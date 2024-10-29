@@ -1,5 +1,6 @@
 package com.example.trend.domain;
 
+import com.example.trend.domain.enumClass.Role;
 import com.example.trend.domain.enumClass.Type;
 import jakarta.persistence.*;
 import lombok.*;
@@ -23,4 +24,7 @@ public class Company {
 
     @Enumerated(EnumType.STRING)
     private Type type;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }

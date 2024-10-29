@@ -1,6 +1,7 @@
 package com.example.trend.service;
 
 import com.example.trend.domain.Company;
+import com.example.trend.domain.enumClass.Role;
 import com.example.trend.domain.enumClass.Type;
 import com.example.trend.repository.CompanyRepository;
 import com.example.trend.web.dto.CompanyJoinDTO;
@@ -25,6 +26,7 @@ public class CompanyServiceImpl implements CompanyService {
                 .username(request.getUsername())
                 .password(bCryptPasswordEncoder.encode(request.getPassword()))
                 .type(Type.COMPANY)
+                .role(Role.ROLE_COM)
                 .build();
 
         companyRepository.save(company);

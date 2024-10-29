@@ -1,8 +1,7 @@
 package com.example.trend.web.dto;
 
-
 import com.example.trend.domain.Member;
-import com.example.trend.repository.MemberRepository;
+import com.example.trend.domain.Company;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,29 +13,42 @@ import java.util.Collection;
 public class CustomUserDetails implements UserDetails {
 
     private final Member member;
+    private final Company company;
 
-    //role반환
+    // Constructor overload to support both Member and Company
+    public CustomUserDetails(Member member) {
+        this.member = member;
+        this.company = null;
+    }
+
+    public CustomUserDetails(Company company) {
+        this.company = company;
+        this.member = null;
+    }
+
+    // Role 반환
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        Collection<GrantedAuthority>  collection = new ArrayList<>();
-
-        collection.add(new GrantedAuthority() {
-            @Override
-            public String getAuthority() {
+        Collection<GrantedAuthority> collection = new ArrayList<>();
+        collection.add(() -> {
+            if (member != null) {
                 return member.getRole().name();
+            } else if (company != null) {
+                return company.getRole().name();
             }
+            return null;
         });
         return collection;
     }
 
     @Override
     public String getPassword() {
-        return member.getPassword();
+        return member != null ? member.getPassword() : company.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return member.getUsername();
+        return member != null ? member.getUsername() : company.getUsername();
     }
 
     @Override
