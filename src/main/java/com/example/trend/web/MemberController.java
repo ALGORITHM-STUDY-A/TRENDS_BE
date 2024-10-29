@@ -19,6 +19,6 @@ public class MemberController {
     @PostMapping("/join")
     public void join(@RequestBody MemberJoinDTO.MemberJoinRequestDTO request) {
 
-
+        memberService.joinMember(request);
     }
 }

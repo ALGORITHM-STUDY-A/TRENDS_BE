@@ -18,7 +18,7 @@ public class MemberServiceImpl implements MemberService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public void joinMember(MemberJoinDTO.MemberJoinRequestDTO request, Long memberId){
+    public void joinMember(MemberJoinDTO.MemberJoinRequestDTO request){
 
 
         /* converter 메서드는 기본적으로 static 메모리를 할당받아 사용하기 때문에

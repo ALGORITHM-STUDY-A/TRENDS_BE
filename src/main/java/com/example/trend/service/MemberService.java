@@ -7,5 +7,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public interface MemberService {
-    void joinMember(MemberJoinDTO.MemberJoinRequestDTO request, Long memberId);
+    void joinMember(MemberJoinDTO.MemberJoinRequestDTO request);
 }
