@@ -1,5 +1,7 @@
 package com.example.trend.service;
 
+import com.example.trend.api.code.status.ErrorStatus;
+import com.example.trend.api.exception.handler.MemberCategoryHandler;
 import com.example.trend.domain.Member;
 import com.example.trend.domain.enumClass.Role;
 import com.example.trend.repository.MemberRepository;
@@ -37,4 +39,12 @@ public class MemberServiceImpl implements MemberService {
         memberRepository.save(newMember);
 
     }
+
+
+    // 회원 찾는 메서드
+    public Member getMemberById(Long id){
+        return memberRepository.findById(id)
+                .orElseThrow(()-> new MemberCategoryHandler(ErrorStatus.MEMBER_NOT_FOUND));
+    }
+
 }
