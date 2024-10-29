@@ -1,9 +1,8 @@
 package com.example.trend.web;
 
-import com.example.trend.service.MemberService;
+import com.example.trend.service.memberService.MemberService;
 import com.example.trend.web.dto.MemberJoinDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

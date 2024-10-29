@@ -1,6 +1,6 @@
 package com.example.trend.web;
 
-import com.example.trend.service.CompanyService;
+import com.example.trend.service.companyService.CompanyService;
 import com.example.trend.web.dto.CompanyJoinDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

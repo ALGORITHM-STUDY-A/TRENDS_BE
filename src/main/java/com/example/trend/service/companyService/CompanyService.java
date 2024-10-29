@@ -1,4 +1,4 @@
-package com.example.trend.service;
+package com.example.trend.service.companyService;
 
 import com.example.trend.web.dto.CompanyJoinDTO;
 import org.springframework.stereotype.Service;

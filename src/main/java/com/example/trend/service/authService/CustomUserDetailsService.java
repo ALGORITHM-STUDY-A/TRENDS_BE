@@ -1,4 +1,4 @@
-package com.example.trend.service;
+package com.example.trend.service.authService;
 
 
 import com.example.trend.domain.Company;

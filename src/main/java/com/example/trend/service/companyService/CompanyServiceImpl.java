@@ -1,4 +1,4 @@
-package com.example.trend.service;
+package com.example.trend.service.companyService;
 
 import com.example.trend.domain.Company;
 import com.example.trend.domain.enumClass.Role;

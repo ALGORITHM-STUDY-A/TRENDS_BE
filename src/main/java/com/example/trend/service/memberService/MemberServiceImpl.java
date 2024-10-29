@@ -1,4 +1,4 @@
-package com.example.trend.service;
+package com.example.trend.service.memberService;
 
 import com.example.trend.api.code.status.ErrorStatus;
 import com.example.trend.api.exception.handler.MemberCategoryHandler;
