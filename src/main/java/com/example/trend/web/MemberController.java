@@ -1,9 +1,9 @@
 package com.example.trend.web;
 
-import com.example.trend.service.MemberService;
+import com.example.trend.api.ApiResponse;
+import com.example.trend.service.memberService.MemberService;
 import com.example.trend.web.dto.MemberJoinDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +17,12 @@ public class MemberController {
     private final MemberService memberService;
 
     @PostMapping("/join")
-    public void join(@RequestBody MemberJoinDTO.MemberJoinRequestDTO request) {
+    public ApiResponse<MemberJoinDTO.MemberJoinResponseDTO> join(@RequestBody MemberJoinDTO.MemberJoinRequestDTO request) {
 
-        memberService.joinMember(request);
+        MemberJoinDTO.MemberJoinResponseDTO response = memberService.joinMember(request);
+
+
+        return ApiResponse.onSuccess(response);
+
     }
 }

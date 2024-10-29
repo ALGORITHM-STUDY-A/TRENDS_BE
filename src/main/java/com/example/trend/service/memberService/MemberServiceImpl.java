@@ -1,4 +1,4 @@
-package com.example.trend.service;
+package com.example.trend.service.memberService;
 
 import com.example.trend.api.code.status.ErrorStatus;
 import com.example.trend.api.exception.handler.MemberCategoryHandler;
@@ -20,7 +20,7 @@ public class MemberServiceImpl implements MemberService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
-    public void joinMember(MemberJoinDTO.MemberJoinRequestDTO request){
+    public MemberJoinDTO.MemberJoinResponseDTO joinMember(MemberJoinDTO.MemberJoinRequestDTO request){
 
 
         /* converter 메서드는 기본적으로 static 메모리를 할당받아 사용하기 때문에
@@ -36,7 +36,12 @@ public class MemberServiceImpl implements MemberService {
                 .email(request.getEmail())
                 .build();
 
-        memberRepository.save(newMember);
+        Member savedMember = memberRepository.save(newMember);
+
+
+        return MemberJoinDTO.MemberJoinResponseDTO.builder()
+                .MemberId(savedMember.getId())
+                .build();
 
     }
 

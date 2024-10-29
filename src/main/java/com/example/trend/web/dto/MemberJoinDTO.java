@@ -1,6 +1,6 @@
 package com.example.trend.web.dto;
 
-import lombok.Getter;
+import lombok.*;
 
 public class MemberJoinDTO {
 
@@ -19,6 +19,16 @@ public class MemberJoinDTO {
 
         String email;
 
+
+    }
+
+    @Builder
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor
+    @Getter
+    public static class MemberJoinResponseDTO{
+
+        Long MemberId;
 
     }
 }
