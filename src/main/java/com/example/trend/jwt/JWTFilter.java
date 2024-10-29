@@ -3,6 +3,7 @@ package com.example.trend.jwt;
 
 import com.example.trend.domain.Member;
 import com.example.trend.domain.enumClass.Role;
+import com.example.trend.web.dto.CustomUserDetails;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -68,7 +69,7 @@ public class JWTFilter extends OncePerRequestFilter{
                 .role(Role.ROLE_USER)
                 .build();
 
-        CustomUserDetails customUserDetails = new CustomUserDetails(userEntity);
+        CustomUserDetails customUserDetails = new CustomUserDetails(member);
 
         Authentication authToken = new UsernamePasswordAuthenticationToken(customUserDetails, null, customUserDetails.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authToken);
