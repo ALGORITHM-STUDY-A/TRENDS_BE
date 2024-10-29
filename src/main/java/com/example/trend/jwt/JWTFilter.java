@@ -29,12 +29,10 @@ public class JWTFilter extends OncePerRequestFilter{
 
         // 헤더에서 Authorization 토큰을 꺼냄
         String authorizationHeader = request.getHeader("Authorization");
-        log.info("토큰 탐색 시작");
 
         // Authorization 헤더가 없거나 Bearer 스킴이 없으면 다음 필터로 이동
         if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
-            log.info("토큰 없음");
             return;
         }
 
