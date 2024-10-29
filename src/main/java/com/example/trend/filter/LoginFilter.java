@@ -2,7 +2,11 @@ package com.example.trend.filter;
 
 
 
+import com.example.trend.domain.RefreshEntity;
 import com.example.trend.jwt.JWTFilter;
+import com.example.trend.jwt.JWTUtil;
+import com.example.trend.repository.RefreshRepository;
+import com.example.trend.web.dto.MemberJoinDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.Cookie;
@@ -27,7 +31,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
 
     private final AuthenticationManager authenticationManager;
-    private final JWTFilter jwtUtil;
+    private final JWTUtil jwtUtil;
     private final RefreshRepository refreshRepository;
     private final ObjectMapper objectMapper = new ObjectMapper(); // Jackson ObjectMapper 추가
 
@@ -39,7 +43,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
         try {
             // JSON 요청 본문을 LoginRequestDto로 매핑
-            JoinDto.LoginRequestDto loginRequestDto = objectMapper.readValue(request.getInputStream(), JoinDto.LoginRequestDto.class);
+            MemberJoinDTO.MemberJoinRequestDTO loginRequestDto = objectMapper.readValue(request.getInputStream(), MemberJoinDTO.MemberJoinRequestDTO.class);
 
             String username = loginRequestDto.getUsername();
             String password = loginRequestDto.getPassword();
