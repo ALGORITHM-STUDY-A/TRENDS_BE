@@ -1,6 +1,7 @@
 package com.example.trend.web.dto;
 
-import lombok.Getter;
+import jakarta.persistence.Entity;
+import lombok.*;
 
 public class CompanyJoinDTO {
 
@@ -10,6 +11,17 @@ public class CompanyJoinDTO {
         String username;
         String password;
         String companyName;
+
+    }
+
+
+    @Builder
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor
+    @Getter
+    public static class CompanyJoinResponseDTO{
+
+        Long companyId;
 
     }
 }

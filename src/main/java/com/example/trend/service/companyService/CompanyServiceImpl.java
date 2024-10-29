@@ -20,7 +20,7 @@ public class CompanyServiceImpl implements CompanyService {
 
 
     @Override
-    public void joinCompany(CompanyJoinDTO.CompanyJoinRequestDTO request) {
+    public CompanyJoinDTO.CompanyJoinResponseDTO joinCompany(CompanyJoinDTO.CompanyJoinRequestDTO request) {
 
         Company company=Company.builder()
                 .username(request.getUsername())
@@ -30,6 +30,10 @@ public class CompanyServiceImpl implements CompanyService {
                 .role(Role.ROLE_COM)
                 .build();
 
-        companyRepository.save(company);
+        Company savedCompany = companyRepository.save(company);
+
+        return CompanyJoinDTO.CompanyJoinResponseDTO.builder()
+                .companyId(savedCompany.getId())
+                .build();
     }
 }

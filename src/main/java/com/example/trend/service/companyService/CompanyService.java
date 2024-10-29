@@ -7,5 +7,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public interface CompanyService {
-    void joinCompany(CompanyJoinDTO.CompanyJoinRequestDTO request);
+    CompanyJoinDTO.CompanyJoinResponseDTO joinCompany(CompanyJoinDTO.CompanyJoinRequestDTO request);
 }

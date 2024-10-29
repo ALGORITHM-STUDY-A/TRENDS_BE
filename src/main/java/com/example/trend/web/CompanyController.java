@@ -1,5 +1,6 @@
 package com.example.trend.web;
 
+import com.example.trend.api.ApiResponse;
 import com.example.trend.service.companyService.CompanyService;
 import com.example.trend.web.dto.CompanyJoinDTO;
 import lombok.RequiredArgsConstructor;
@@ -16,7 +17,10 @@ public class CompanyController {
     private final CompanyService companyService;
 
     @PostMapping("/join")
-    public void joinCompany(@RequestBody CompanyJoinDTO.CompanyJoinRequestDTO request) {
-        companyService.joinCompany(request);
+    public ApiResponse<CompanyJoinDTO.CompanyJoinResponseDTO> joinCompany(@RequestBody CompanyJoinDTO.CompanyJoinRequestDTO request) {
+
+        CompanyJoinDTO.CompanyJoinResponseDTO responseDTO = companyService.joinCompany(request);
+
+        return ApiResponse.onSuccess(responseDTO);
     }
 }
