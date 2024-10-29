@@ -9,6 +9,7 @@ public class CompanyJoinDTO {
 
         String username;
         String password;
+        String companyName;
 
     }
 }

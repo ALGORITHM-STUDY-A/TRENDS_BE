@@ -25,6 +25,7 @@ public class CompanyServiceImpl implements CompanyService {
         Company company=Company.builder()
                 .username(request.getUsername())
                 .password(bCryptPasswordEncoder.encode(request.getPassword()))
+                .companyName(request.getCompanyName())
                 .type(Type.COMPANY)
                 .role(Role.ROLE_COM)
                 .build();
