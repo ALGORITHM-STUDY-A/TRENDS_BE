@@ -2,6 +2,7 @@ package com.example.trend.filter;
 
 
 import com.example.trend.jwt.JWTUtil;
+import com.example.trend.repository.RefreshRepository;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
