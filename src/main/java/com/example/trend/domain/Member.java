@@ -1,6 +1,7 @@
 package com.example.trend.domain;
 
 import com.example.trend.domain.enumClass.Role;
+import com.example.trend.domain.enumClass.Type;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -39,6 +40,9 @@ public class Member {
 
     @Column(nullable = false)
     private String email;
+
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Address> address=new ArrayList<>();
