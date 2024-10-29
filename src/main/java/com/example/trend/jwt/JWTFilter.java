@@ -20,45 +20,48 @@ import java.io.IOException;
 
 @RequiredArgsConstructor
 @Slf4j
-public class JWTFilter extends OncePerRequestFilter {
+public class JWTFilter extends OncePerRequestFilter{
 
     private final JWTUtil jwtUtil;
-
-
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        //request에서 Authorization 헤더를 찾음
-        String authorization= request.getHeader("Authorization");
+        // 헤더에서 Authorization 토큰을 꺼냄
+        String authorizationHeader = request.getHeader("Authorization");
+        log.info("토큰 탐색 시작");
 
-        //Authorization 헤더 검증
-        if (authorization == null || !authorization.startsWith("Bearer ")) {
-
-            System.out.println("token null");
+        // Authorization 헤더가 없거나 Bearer 스킴이 없으면 다음 필터로 이동
+        if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
-
-            //조건이 해당되면 메소드 종료 (필수)
+            log.info("토큰 없음");
             return;
         }
 
-        System.out.println("authorization now");
-        //Bearer 부분 제거 후 순수 토큰만 획득
-        String token = authorization.split(" ")[1];
+        // Bearer 뒤의 토큰을 추출
+        String accessToken = authorizationHeader.substring(7).trim();
 
-        //토큰 소멸 시간 검증
-        if (jwtUtil.isExpired(token)) {
+        // 토큰 만료 여부 확인
+        try {
+            log.info("토큰 있어서 검증 시작");
+            jwtUtil.isExpired(accessToken);
+        } catch (ExpiredJwtException e) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().print("access token expired");
+            return;
+        }
 
-            System.out.println("token expired");
-            filterChain.doFilter(request, response);
-
-            //조건이 해당되면 메소드 종료 (필수)
+        // 토큰이 access인지 확인
+        String category = jwtUtil.getCategory(accessToken);
+        if (!category.equals("access")) {
+            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            response.getWriter().print("invalid access token");
             return;
         }
 
         //토큰에서 username과 role 획득
-        String username = jwtUtil.getUsername(token);
-        String roleString = jwtUtil.getRole(token);
+        String username = jwtUtil.getUsername(accessToken);
+        String roleString = jwtUtil.getRole(accessToken);
 
         // String role을 Role enum으로 변환
         Role role = Role.valueOf(roleString);

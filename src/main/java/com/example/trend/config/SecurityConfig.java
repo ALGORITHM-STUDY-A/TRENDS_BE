@@ -86,7 +86,7 @@ public class SecurityConfig {
 
 
         http.authorizeHttpRequests((auth)->auth
-                .requestMatchers("members/join").permitAll()
+                .requestMatchers("members/join","/login").permitAll()
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**").permitAll() // Swagger 관련 경로를 허용
                 .requestMatchers("/health").permitAll()
                 .anyRequest().authenticated());
