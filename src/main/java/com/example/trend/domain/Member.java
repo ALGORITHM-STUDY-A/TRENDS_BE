@@ -4,6 +4,9 @@ import com.example.trend.domain.enumClass.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -30,7 +33,8 @@ public class Member {
 
     private String email;
 
-    private Address address;
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    private List<Address> address=new ArrayList<>();
 
 
     /*--------------------------------기업용--------------------------------------*/
