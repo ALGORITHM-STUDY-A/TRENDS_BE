@@ -1,7 +1,6 @@
 package com.example.trend.domain;
 
 import com.example.trend.domain.enumClass.Role;
-import com.example.trend.domain.enumClass.Type;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -27,11 +26,6 @@ public class Company {
 
     @Column(nullable = false)
     private String password;
-
-    // 기업과 개인을 구별하는 필드입니다
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private Type type;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
