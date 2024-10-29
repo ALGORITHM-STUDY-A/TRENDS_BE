@@ -1,6 +1,8 @@
 package com.example.trend.jwt;
 
 
+import com.example.trend.domain.Member;
+import com.example.trend.domain.enumClass.Role;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -19,7 +21,7 @@ import java.io.IOException;
 @Slf4j
 public class JWTFilter extends OncePerRequestFilter{
 
-    private final JwtUtil jwtUtil;
+    private final JWTUtil jwtUtil;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -60,9 +62,10 @@ public class JWTFilter extends OncePerRequestFilter{
         String username = jwtUtil.getUsername(accessToken);
         String role = jwtUtil.getRole(accessToken);
 
-        UserEntity userEntity = UserEntity.builder()
+
+        Member member = Member.builder()
                 .username(username)
-                .role(role)
+                .role(Role.ROLE_USER)
                 .build();
 
         CustomUserDetails customUserDetails = new CustomUserDetails(userEntity);
