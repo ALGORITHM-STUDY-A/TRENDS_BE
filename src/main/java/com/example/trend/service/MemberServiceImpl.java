@@ -1,5 +1,8 @@
 package com.example.trend.service;
 
+import com.example.trend.domain.Member;
+import com.example.trend.repository.MemberRepository;
+import com.example.trend.web.dto.MemberJoinDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,4 +11,5 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 @RequiredArgsConstructor
 public class MemberServiceImpl implements MemberService {
+
 }
