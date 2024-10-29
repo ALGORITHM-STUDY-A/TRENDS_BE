@@ -20,7 +20,12 @@ public enum ErrorStatus implements BaseErrorCode {
 
     // 멤버 관련 에러
     // 해당 에러코드는 추후 어노테이션으로 수정 할 예정입니다
-    MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "MEMBER3001", "사용자가 없습니다.");
+    MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "MEMBER3001", "사용자가 없습니다."),
+
+    //토큰 관련 에러
+    TOKEN_NOT_INCORRECT(HttpStatus.NOT_FOUND,"TOKEN4001","토큰을 찾을 수 없습니다"),
+    TOKEN_EXPIRED(HttpStatus.NOT_FOUND,"TOKEN4002","토큰이 만료되었습니다"),
+    TOKEN_NULL(HttpStatus.NOT_FOUND,"TOKEN4003","토큰이 만료되었습니다");
 
 
 

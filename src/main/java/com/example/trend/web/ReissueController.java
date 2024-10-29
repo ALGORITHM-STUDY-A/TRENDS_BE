@@ -1,5 +1,7 @@
 package com.example.trend.web;
 
+import com.example.trend.api.code.status.ErrorStatus;
+import com.example.trend.api.exception.handler.TokenCategoryHandler;
 import com.example.trend.domain.RefreshEntity;
 import com.example.trend.jwt.JWTUtil;
 import com.example.trend.repository.RefreshRepository;
