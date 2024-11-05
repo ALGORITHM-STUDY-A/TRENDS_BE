@@ -7,9 +7,9 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: ${LOCAL_DB_URL}
-    username: ${LOCAL_DB_USERNAME}
-    password: ${LOCAL_DB_PASSWORD}
+    url: jdbc:mysql://localhost:3306/trends
+    username: root
+    password: Esc141414!
 
   jpa:
     properties:
@@ -23,7 +23,7 @@ spring:
         default_batch_fetch_size: 1000
 
   jwt:
-    secret: ${JWT_SECRET}
+    secret: 124354gervsddqwhtrbgdf
 
 
 springdoc:
