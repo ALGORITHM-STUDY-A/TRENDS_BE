@@ -91,4 +91,9 @@ public class MemberController {
         팔로워 수
         축제 게시글
      */
+    @Operation(description = "회원 프로필 조회 API")
+    @GetMapping("/profiles")
+    public void getProfiles(@AuthenticationPrincipal UserDetails userDetails){
+
+    }
 }
