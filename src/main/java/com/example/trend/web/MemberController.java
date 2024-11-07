@@ -5,6 +5,7 @@ import com.example.trend.service.memberService.MemberService;
 import com.example.trend.web.dto.MemberJoinDTO;
 import com.example.trend.web.dto.MemberProfileFindDTO;
 import com.example.trend.web.dto.MemberProfileImageDTO;
+import com.example.trend.web.dto.MemberProfileUpdateDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -23,12 +24,42 @@ public class MemberController {
 
     private final MemberService memberService;
 
+    @Operation(summary = "회원가입 API")
     @PostMapping("/join")
     public ApiResponse<MemberJoinDTO.MemberJoinResponseDTO> join(@RequestBody MemberJoinDTO.MemberJoinRequestDTO request) {
 
         MemberJoinDTO.MemberJoinResponseDTO response = memberService.joinMember(request);
 
         return ApiResponse.onSuccess(response);
+    }
+
+
+
+    //프로필 조회 API
+    @Operation(summary = "회원 프로필 조회 API")
+    @GetMapping("/profiles")
+    public void getProfiles(@AuthenticationPrincipal UserDetails userDetails){
+
+    }
+
+
+
+    // 회원 프로필 수정 API
+    @Operation(summary = "회원프로필 수정 API")
+    @PatchMapping("/profiles")
+    public void updateProfile(@AuthenticationPrincipal UserDetails userDetails,
+                              @RequestBody MemberProfileUpdateDTO.MemberProfileUpdateRequestDTO request){
+
+
+    }
+
+
+
+    // 회원 탈퇴 API
+    @Operation(summary = "회원 탈퇴 API")
+    @PatchMapping("/")
+    public void deleteMember(@AuthenticationPrincipal UserDetails userDetails){
+
     }
 
 
@@ -46,15 +77,6 @@ public class MemberController {
     @Operation(summary = "비밀번호 찾기 API")
     @GetMapping("/find-passwords")
     public void getPasswords(MemberProfileFindDTO.FindMemberPasswordRequestDTO request){
-
-    }
-
-
-
-    //프로필 조회 API
-    @Operation(description = "회원 프로필 조회 API")
-    @GetMapping("/profiles")
-    public void getProfiles(@AuthenticationPrincipal UserDetails userDetails){
 
     }
 }
