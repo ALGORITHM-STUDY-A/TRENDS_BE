@@ -3,6 +3,7 @@ package com.example.trend.web;
 import com.example.trend.api.ApiResponse;
 import com.example.trend.service.memberService.MemberService;
 import com.example.trend.web.dto.MemberJoinDTO;
+import com.example.trend.web.dto.MemberProfileFindDTO;
 import com.example.trend.web.dto.MemberProfileImageDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
@@ -69,9 +70,20 @@ public class MemberController {
 
 
     // 아이디 찾기 - 휴대폰 번호로 찾기 (인증 외부 API 필요)
+    @Operation(summary = "아이디 찾기 API")
+    @GetMapping("/find-usernames")
+    public void getUsernames(MemberProfileFindDTO.FindMemberUsernameRequestDTO request){
+
+    }
+
 
 
     // 비밀번호 찾기 - 아이디,이름,이메일로 찾기
+    @Operation(summary = "비밀번호 찾기 API")
+    @GetMapping("/find-passwords")
+    public void getPasswords(MemberProfileFindDTO.FindMemberPasswordRequestDTO request){
+
+    }
 
     /*  프로필 조회
         프로필 사진
