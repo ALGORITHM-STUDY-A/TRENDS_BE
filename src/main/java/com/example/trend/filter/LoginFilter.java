@@ -3,10 +3,9 @@ package com.example.trend.filter;
 
 
 import com.example.trend.domain.RefreshEntity;
-import com.example.trend.jwt.JWTFilter;
 import com.example.trend.jwt.JWTUtil;
 import com.example.trend.repository.RefreshRepository;
-import com.example.trend.web.dto.MemberJoinDTO;
+import com.example.trend.web.a.dto.memberDTO.MemberJoinDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.Cookie;

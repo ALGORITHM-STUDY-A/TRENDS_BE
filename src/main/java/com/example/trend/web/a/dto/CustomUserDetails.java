@@ -1,4 +1,4 @@
-package com.example.trend.web.dto;
+package com.example.trend.web.a.dto;
 
 import com.example.trend.domain.Member;
 import com.example.trend.domain.Company;

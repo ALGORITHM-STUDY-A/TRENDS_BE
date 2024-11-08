@@ -3,7 +3,7 @@ package com.example.trend.service.companyService;
 import com.example.trend.domain.Company;
 import com.example.trend.domain.enumClass.Role;
 import com.example.trend.repository.CompanyRepository;
-import com.example.trend.web.dto.CompanyJoinDTO;
+import com.example.trend.web.a.dto.companyDTO.CompanyJoinDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

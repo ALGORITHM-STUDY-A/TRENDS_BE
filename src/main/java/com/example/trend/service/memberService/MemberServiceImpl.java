@@ -5,7 +5,7 @@ import com.example.trend.api.exception.handler.MemberCategoryHandler;
 import com.example.trend.domain.Member;
 import com.example.trend.domain.enumClass.Role;
 import com.example.trend.repository.MemberRepository;
-import com.example.trend.web.dto.MemberJoinDTO;
+import com.example.trend.web.a.dto.memberDTO.MemberJoinDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;

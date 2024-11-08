@@ -1,4 +1,4 @@
-package com.example.trend.web.dto;
+package com.example.trend.web.a.dto.memberDTO;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;

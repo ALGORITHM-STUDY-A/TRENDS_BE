@@ -5,7 +5,7 @@ import com.example.trend.domain.Company;
 import com.example.trend.domain.Member;
 import com.example.trend.repository.CompanyRepository;
 import com.example.trend.repository.MemberRepository;
-import com.example.trend.web.dto.CustomUserDetails;
+import com.example.trend.web.a.dto.CustomUserDetails;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
