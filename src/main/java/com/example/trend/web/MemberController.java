@@ -57,7 +57,7 @@ public class MemberController {
 
     // 회원 탈퇴 API
     @Operation(summary = "회원 탈퇴 API")
-    @PatchMapping("/")
+    @PatchMapping("")
     public void deleteMember(@AuthenticationPrincipal UserDetails userDetails){
 
     }
