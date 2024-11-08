@@ -19,7 +19,7 @@ public class MemberImageController {
 
 
     @Operation(summary = "프로필 사진 등록 API")
-    @PostMapping(path = "/images/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PostMapping(path = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void uploadImage(
             @RequestPart(value = "file") MultipartFile multipartFile,
             @AuthenticationPrincipal UserDetails userDetails
@@ -29,7 +29,7 @@ public class MemberImageController {
 
 
     @Operation(summary = "프로필 사진 조회 API")
-    @GetMapping(path = "/images")
+    @GetMapping(path = "")
     public void getPetImage(
             @AuthenticationPrincipal UserDetails userDetails
     ){
@@ -37,7 +37,7 @@ public class MemberImageController {
     }
 
     @Operation(summary = "프로필 사진 삭제 API")
-    @DeleteMapping(path = "/images")
+    @DeleteMapping(path = "")
     public void deletePetImage(
             @AuthenticationPrincipal UserDetails userDetails
     ){
@@ -46,7 +46,7 @@ public class MemberImageController {
 
 
     @Operation(summary = "프로필 사진 업데이트 API")
-    @PutMapping(path = "/image/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PutMapping(path = "/update", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public void updateProfileImage(
             @RequestPart(value = "file") MultipartFile multipartFile,
             @AuthenticationPrincipal UserDetails userDetails
