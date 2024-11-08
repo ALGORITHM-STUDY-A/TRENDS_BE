@@ -1,6 +1,7 @@
 package com.example.trend.web.companyController;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -13,6 +14,7 @@ import java.io.IOException;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/companies/images")
+@Tag(name = "기업 프로필 이미지 관리 API")
 public class CompanyImageController {
 
 

@@ -6,6 +6,7 @@ import com.example.trend.web.a.dto.companyDTO.CompanyJoinDTO;
 import com.example.trend.web.a.dto.companyDTO.CompanyProfileFindDTO;
 import com.example.trend.web.a.dto.companyDTO.CompanyProfileUpdateDTO;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/companies")
+@Tag(name = "기업 정보 관리 API")
 public class CompanyController {
 
     private final CompanyService companyService;

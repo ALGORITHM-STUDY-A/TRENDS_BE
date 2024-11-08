@@ -6,6 +6,7 @@ import com.example.trend.web.a.dto.memberDTO.MemberJoinDTO;
 import com.example.trend.web.a.dto.memberDTO.MemberProfileFindDTO;
 import com.example.trend.web.a.dto.memberDTO.MemberProfileUpdateDTO;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/members")
+@Tag(name = "개인 정보 관리 API")
 public class MemberController {
 
     private final MemberService memberService;
