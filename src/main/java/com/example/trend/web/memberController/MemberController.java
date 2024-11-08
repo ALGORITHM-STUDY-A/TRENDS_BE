@@ -1,21 +1,15 @@
-package com.example.trend.web;
+package com.example.trend.web.memberController;
 
 import com.example.trend.api.ApiResponse;
 import com.example.trend.service.memberService.MemberService;
-import com.example.trend.web.dto.MemberJoinDTO;
-import com.example.trend.web.dto.MemberProfileFindDTO;
-import com.example.trend.web.dto.MemberProfileImageDTO;
-import com.example.trend.web.dto.MemberProfileUpdateDTO;
+import com.example.trend.web.a.dto.memberDTO.MemberJoinDTO;
+import com.example.trend.web.a.dto.memberDTO.MemberProfileFindDTO;
+import com.example.trend.web.a.dto.memberDTO.MemberProfileUpdateDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 @RestController
 @RequiredArgsConstructor

@@ -1,6 +1,5 @@
-package com.example.trend.web.dto;
+package com.example.trend.web.a.dto.companyDTO;
 
-import jakarta.persistence.Entity;
 import lombok.*;
 
 public class CompanyJoinDTO {

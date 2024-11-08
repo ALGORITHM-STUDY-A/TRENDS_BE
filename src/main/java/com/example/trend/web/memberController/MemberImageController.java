@@ -1,4 +1,4 @@
-package com.example.trend.web;
+package com.example.trend.web.memberController;
 
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;

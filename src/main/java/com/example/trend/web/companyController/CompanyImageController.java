@@ -1,4 +1,4 @@
-package com.example.trend.web;
+package com.example.trend.web.companyController;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;

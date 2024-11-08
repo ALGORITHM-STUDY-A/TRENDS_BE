@@ -1,10 +1,10 @@
-package com.example.trend.web;
+package com.example.trend.web.companyController;
 
 import com.example.trend.api.ApiResponse;
 import com.example.trend.service.companyService.CompanyService;
-import com.example.trend.web.dto.CompanyJoinDTO;
-import com.example.trend.web.dto.CompanyProfileFindDTO;
-import com.example.trend.web.dto.CompanyProfileUpdateDTO;
+import com.example.trend.web.a.dto.companyDTO.CompanyJoinDTO;
+import com.example.trend.web.a.dto.companyDTO.CompanyProfileFindDTO;
+import com.example.trend.web.a.dto.companyDTO.CompanyProfileUpdateDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

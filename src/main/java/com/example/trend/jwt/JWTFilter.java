@@ -3,7 +3,7 @@ package com.example.trend.jwt;
 
 import com.example.trend.domain.Member;
 import com.example.trend.domain.enumClass.Role;
-import com.example.trend.web.dto.CustomUserDetails;
+import com.example.trend.web.a.dto.CustomUserDetails;
 import io.jsonwebtoken.ExpiredJwtException;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
