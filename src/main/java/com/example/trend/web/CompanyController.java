@@ -23,4 +23,11 @@ public class CompanyController {
 
         return ApiResponse.onSuccess(responseDTO);
     }
+
+
+    // 기업 프로필 조회
+    // 기업 프로필 수정
+    // 기업 프로필 삭제
+    // 기업 아이디 찾기
+    // 기업 비밀번호 찾기
 }
