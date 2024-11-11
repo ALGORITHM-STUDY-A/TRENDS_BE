@@ -24,11 +24,10 @@ public class Address extends BaseEntity {
     private String city;
 
     /* 읍/면/동 */
-    @Column(nullable = false)
     private String town;
 
     /* 상세주소 */
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String details;
 
 
