@@ -11,13 +11,9 @@ import com.example.trend.repository.MemberRepository;
 import com.example.trend.web.a.dto.memberDTO.MemberJoinDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 @Service
 @Transactional
@@ -29,16 +25,12 @@ public class MemberServiceImpl implements MemberService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final AddressRepository addressRepository;
 
-
-
     @Override
     public MemberJoinDTO.MemberJoinResponseDTO joinMember(MemberJoinDTO.MemberJoinRequestDTO request){
 
 
         /* converter 메서드는 기본적으로 static 메모리를 할당받아 사용하기 때문에
         * bCryptPasswordEncoder를 주입받을 수 없어 회원가입만 컨버터를 사용하지 않겠습니다 */
-
-        duplicateUsername(request.getUsername());
 
         Member newMember= Member.builder()
                 .username(request.getUsername())
@@ -70,49 +62,9 @@ public class MemberServiceImpl implements MemberService {
     }
 
 
-    @Override
-    public void deleteMember(String username) {
-
-        Member findMember = getMemberByUsername(username);
-
-        findMember.setInactive();  // 객체의 status 필드 수정
-
-    }
-
-
-
-
-
-
-
-
-
-
-    // 매일 자정에 실행
-    @Scheduled(cron = "0 0 0 * * ?")
-    @Override
-    public void deleteOldInactiveMembers() {
-
-        LocalDateTime cutoffDate = LocalDateTime.now().minusDays(30);  // 30일 이전 날짜 계산
-        List<Member> membersToDelete = memberRepository.findInactiveMembersForDeletion(Status.INACTIVE, cutoffDate);
-
-        // 30일 지난 회원 삭제
-        memberRepository.deleteAll(membersToDelete);
-
-    }
-
-
-    // username 중복 검사 메서드
-    public void duplicateUsername(String username) {
-        if (memberRepository.existsByUsername(username)) {
-            throw new MemberCategoryHandler(ErrorStatus.MEMBER_USERNAME_DUPLICATE);
-        }
-    }
-
-
     // 회원 찾는 메서드
-    public Member getMemberByUsername(String username){
-        return memberRepository.findByUsername(username)
+    public Member getMemberById(Long id){
+        return memberRepository.findById(id)
                 .orElseThrow(()-> new MemberCategoryHandler(ErrorStatus.MEMBER_NOT_FOUND));
     }
 
