@@ -41,6 +41,7 @@ public class Member {
     @Column(nullable = false)
     private String email;
 
+    // 회원 ACTIVE,INACTIVE 상태 추가
     @Column(nullable = false)
     private Status status;
 
