@@ -1,6 +1,7 @@
 package com.example.trend.domain;
 
 import com.example.trend.domain.enumClass.Role;
+import com.example.trend.domain.enumClass.Status;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -36,6 +37,9 @@ public class Company {
 
     @Column(nullable = false)
     private String companyName;
+
+    @Column(nullable = false)
+    private Status status;
 
 
 
