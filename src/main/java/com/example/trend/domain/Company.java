@@ -6,7 +6,6 @@ import com.example.trend.domain.enumClass.Status;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,8 +50,6 @@ public class Company extends BaseEntity {
     @Column(nullable = false)
     private String phoneNumber;
 
-    // 회원 비활성화 상태 날짜를 기록하는 필드
-    private LocalDateTime inactiveDate;
 
 
 
@@ -68,18 +65,5 @@ public class Company extends BaseEntity {
     @OneToMany(mappedBy = "company",cascade = CascadeType.ALL)
     private List<Address> addresses = new ArrayList<>();
 
-
-
-
-
-    /* 연관관계 메서드 */
-
-    // status를 INACTIVE로 변경하는 메서드
-    public void setInactive() {
-
-        this.status = Status.INACTIVE;
-        this.inactiveDate = LocalDateTime.now();  // 비활성화 날짜 기록
-
-    }
 
 }

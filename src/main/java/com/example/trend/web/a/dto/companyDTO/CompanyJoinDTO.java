@@ -2,7 +2,6 @@ package com.example.trend.web.a.dto.companyDTO;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
 public class CompanyJoinDTO {
@@ -14,7 +13,6 @@ public class CompanyJoinDTO {
         @Schema(description = "담당자 이름 입니다")
         String name;
 
-        @Pattern(regexp = "^\\d{11}$", message = "핸드폰 번호는 11자리 숫자만 가능합니다.")
         @Schema(description = "회사 전화번호 입니다")
         String phoneNumber;
 
@@ -26,8 +24,7 @@ public class CompanyJoinDTO {
         @Schema(description = "회사명 입니다")
         String companyName;
 
-        @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\d)(?=.*[!@#$%^&*(),.?\":{}|<>])[a-zA-Z\\d!@#$%^&*(),.?\":{}|<>]{8,12}$",
-                message = "비밀번호는 8~12자의 영문, 숫자, 특수문자를 포함해야 합니다.")
+        @Schema(description = "회사 비밀번호 입니다")
         String password;
 
 
