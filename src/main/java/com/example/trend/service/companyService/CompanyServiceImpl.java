@@ -1,5 +1,8 @@
 package com.example.trend.service.companyService;
 
+import com.example.trend.api.code.status.ErrorStatus;
+import com.example.trend.api.exception.handler.CompanyCategoryHandler;
+import com.example.trend.api.exception.handler.MemberCategoryHandler;
 import com.example.trend.domain.Address;
 import com.example.trend.domain.Company;
 import com.example.trend.domain.enumClass.Role;
@@ -25,6 +28,8 @@ public class CompanyServiceImpl implements CompanyService {
     @Override
     public CompanyJoinDTO.CompanyJoinResponseDTO joinCompany(CompanyJoinDTO.CompanyJoinRequestDTO request) {
 
+        duplicateUsername(request.getUsername());
+
         Company company=Company.builder()
                 .username(request.getUsername())
                 .password(bCryptPasswordEncoder.encode(request.getPassword()))
@@ -47,5 +52,14 @@ public class CompanyServiceImpl implements CompanyService {
         return CompanyJoinDTO.CompanyJoinResponseDTO.builder()
                 .companyId(savedCompany.getId())
                 .build();
+    }
+
+
+
+    // username 중복 검사 메서드
+    public void duplicateUsername(String username) {
+        if (companyRepository.existsByUsername(username)) {
+            throw new CompanyCategoryHandler(ErrorStatus.COMPANY_USERNAME_DUPLICATE);
+        }
     }
 }
