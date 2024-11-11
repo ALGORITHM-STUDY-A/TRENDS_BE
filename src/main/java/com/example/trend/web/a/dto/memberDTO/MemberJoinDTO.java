@@ -17,7 +17,7 @@ public class MemberJoinDTO {
         @Schema(description = "회원전화번호 입니다")
         String phoneNumber;
 
-        @Email
+        @Email(message = "올바른 형식의 이메일을 입력해주세요")
         @Schema(description = "회원이메일 입니다")
         String email;
 
