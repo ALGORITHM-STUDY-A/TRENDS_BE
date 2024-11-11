@@ -1,5 +1,6 @@
 package com.example.trend.domain;
 
+import com.example.trend.domain.common.BaseEntity;
 import com.example.trend.domain.enumClass.Role;
 import com.example.trend.domain.enumClass.Status;
 import jakarta.persistence.*;
@@ -13,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Getter
-public class Company {
+public class Company extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
