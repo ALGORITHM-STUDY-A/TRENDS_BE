@@ -4,6 +4,9 @@ import com.example.trend.domain.enumClass.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Builder
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -33,6 +36,21 @@ public class Company {
 
     @Column(nullable = false)
     private String companyName;
+
+
+
+
+
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "agreement_id")
+    private Agreement agreement;
+
+    @OneToMany(mappedBy = "company",cascade = CascadeType.ALL)
+    private List<CompanyProfileImage> companyProfileImages = new ArrayList<>();
+
+    @OneToMany(mappedBy = "company",cascade = CascadeType.ALL)
+    private List<Address> addresses = new ArrayList<>();
 
 
 }

@@ -40,9 +40,23 @@ public class Member {
     @Column(nullable = false)
     private String email;
 
+
+
+
+
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
     private List<Address> address=new ArrayList<>();
 
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
+    private List<MemberFollow> memberFollows=new ArrayList<>();
 
-    /*--------------------------------기업용--------------------------------------*/
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
+    private List<MemberFollower> memberFollowers=new ArrayList<>();
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "agreement_id")
+    private Agreement agreement;
+
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
+    private List<MemberProfileImage> memberProfileImages=new ArrayList<>();
 }
