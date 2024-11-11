@@ -15,6 +15,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -31,6 +33,8 @@ public class MemberServiceImpl implements MemberService {
 
         /* converter 메서드는 기본적으로 static 메모리를 할당받아 사용하기 때문에
         * bCryptPasswordEncoder를 주입받을 수 없어 회원가입만 컨버터를 사용하지 않겠습니다 */
+
+        duplicateUsername(request.getUsername());
 
         Member newMember= Member.builder()
                 .username(request.getUsername())
@@ -59,6 +63,15 @@ public class MemberServiceImpl implements MemberService {
                 .MemberId(savedMember.getId())
                 .build();
 
+    }
+
+
+
+    // username 중복 검사 메서드
+    public void duplicateUsername(String username) {
+        if (memberRepository.existsByUsername(username)) {
+            throw new MemberCategoryHandler(ErrorStatus.MEMBER_USERNAME_DUPLICATE);
+        }
     }
 
 
