@@ -29,15 +29,15 @@ public class MemberJoinDTO {
         @Schema(description = "회원 닉네임 입니다")
         String nickname;
 
+        Status status= Status.ACTIVE;
 
-        // 주소를 한 줄로 받는데 어떻게 이걸 구분을 해야할까
+
+        /* ---------- 주소 ---------- */
         @Schema(description = "시/도 입니다")
         String province;
 
         @Schema(description = "시/군/구 입니다")
         String city;
-
-        Status status= Status.ACTIVE;
     }
 
 

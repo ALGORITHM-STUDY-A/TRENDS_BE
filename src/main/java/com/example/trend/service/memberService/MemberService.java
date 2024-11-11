@@ -8,7 +8,4 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public interface MemberService {
     MemberJoinDTO.MemberJoinResponseDTO joinMember(MemberJoinDTO.MemberJoinRequestDTO request);
-
-    @Transactional
-    MemberJoinDTO.MemberJoinResponseDTO joinMemberV2(MemberJoinDTO.MemberJoinRequestDTO request);
 }
