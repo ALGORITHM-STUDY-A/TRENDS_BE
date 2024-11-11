@@ -9,36 +9,21 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Getter
-public class Address extends BaseEntity {
+public class CompanyProfileImage extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /* 시/도 */
+    // 이미지가 저장된 주소 링크
     @Column(nullable = false)
-    private String province;
+    private String imageLink;
 
-    /* 시/군/구 */
     @Column(nullable = false)
-    private String city;
-
-    /* 읍/면/동 */
-    @Column(nullable = false)
-    private String town;
-
-    /* 상세주소 */
-    @Column(nullable = false)
-    private String details;
-
-
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
-    private Member member;
+    private String imageName;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "company_id")
     private Company company;
+
 }

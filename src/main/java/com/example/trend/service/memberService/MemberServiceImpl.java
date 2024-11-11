@@ -4,6 +4,7 @@ import com.example.trend.api.code.status.ErrorStatus;
 import com.example.trend.api.exception.handler.MemberCategoryHandler;
 import com.example.trend.domain.Member;
 import com.example.trend.domain.enumClass.Role;
+import com.example.trend.domain.enumClass.Status;
 import com.example.trend.repository.MemberRepository;
 import com.example.trend.web.a.dto.memberDTO.MemberJoinDTO;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +35,7 @@ public class MemberServiceImpl implements MemberService {
                 .role(Role.ROLE_USER)
                 .phoneNumber(request.getPhoneNumber())
                 .email(request.getEmail())
+                .status(Status.ACTIVE)
                 .build();
 
         Member savedMember = memberRepository.save(newMember);

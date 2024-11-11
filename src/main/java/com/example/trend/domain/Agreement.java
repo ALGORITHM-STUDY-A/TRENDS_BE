@@ -9,36 +9,30 @@ import lombok.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Getter
-public class Address extends BaseEntity {
+public class Agreement extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    /* 시/도 */
+    // 서비스 이용 약관
     @Column(nullable = false)
-    private String province;
+    private Boolean serviceAgreement;
 
-    /* 시/군/구 */
+    // 개인정보 수집 및 이용동의
     @Column(nullable = false)
-    private String city;
+    private Boolean personalDataAgree;
 
-    /* 읍/면/동 */
+    // 제 3자 개인정보고 제공 동의
     @Column(nullable = false)
-    private String town;
-
-    /* 상세주소 */
-    @Column(nullable = false)
-    private String details;
+    private Boolean thirdPersonalDataAgree;
 
 
-
-
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "company_id")
     private Company company;
 }
