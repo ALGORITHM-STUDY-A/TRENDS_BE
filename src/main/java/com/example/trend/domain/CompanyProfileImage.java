@@ -16,8 +16,10 @@ public class CompanyProfileImage extends BaseEntity {
     private Long id;
 
     // 이미지가 저장된 주소 링크
+    @Column(nullable = false)
     private String imageLink;
 
+    @Column(nullable = false)
     private String imageName;
 
     @ManyToOne(fetch = FetchType.LAZY)

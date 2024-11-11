@@ -16,12 +16,15 @@ public class Agreement extends BaseEntity {
     private Long id;
 
     // 서비스 이용 약관
+    @Column(nullable = false)
     private Boolean serviceAgreement;
 
     // 개인정보 수집 및 이용동의
+    @Column(nullable = false)
     private Boolean personalDataAgree;
 
     // 제 3자 개인정보고 제공 동의
+    @Column(nullable = false)
     private Boolean thirdPersonalDataAgree;
 
 
