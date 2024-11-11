@@ -7,6 +7,7 @@ import com.example.trend.web.a.dto.memberDTO.MemberProfileFindDTO;
 import com.example.trend.web.a.dto.memberDTO.MemberProfileUpdateDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,7 +23,7 @@ public class MemberController {
 
     @Operation(summary = "회원가입 API")
     @PostMapping("/join")
-    public ApiResponse<MemberJoinDTO.MemberJoinResponseDTO> join(@RequestBody MemberJoinDTO.MemberJoinRequestDTO request) {
+    public ApiResponse<MemberJoinDTO.MemberJoinResponseDTO> join( @RequestBody MemberJoinDTO.MemberJoinRequestDTO request) {
 
         MemberJoinDTO.MemberJoinResponseDTO response = memberService.joinMember(request);
 
