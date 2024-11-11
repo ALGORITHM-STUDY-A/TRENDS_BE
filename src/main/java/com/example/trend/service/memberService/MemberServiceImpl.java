@@ -45,48 +45,20 @@ public class MemberServiceImpl implements MemberService {
 
         Member savedMember = memberRepository.save(newMember);
 
+        Address newAddress = Address.builder()
+                .province(request.getProvince())  // 시도
+                .city(request.getCity())
+                .company(null)
+                .member(savedMember)              // 주소를 회원과 연결
+                .build();
+
+        addressRepository.save(newAddress);
+
 
         return MemberJoinDTO.MemberJoinResponseDTO.builder()
                 .MemberId(savedMember.getId())
                 .build();
 
-    }
-
-    @Transactional
-    @Override
-    public MemberJoinDTO.MemberJoinResponseDTO joinMemberV2(MemberJoinDTO.MemberJoinRequestDTO request) {
-
-        log.info("joinMemberV2 실행");
-
-        // 비밀번호 암호화
-        Member newMember = Member.builder()
-                .username(request.getUsername())
-                .password(bCryptPasswordEncoder.encode(request.getPassword()))
-                .name(request.getName())
-                .nickname(request.getNickname())
-                .role(Role.ROLE_USER)
-                .phoneNumber(request.getPhoneNumber())
-                .email(request.getEmail())
-                .status(Status.ACTIVE)
-                .build();
-
-        // 회원 저장
-        Member savedMember = memberRepository.save(newMember);
-
-        // 주소 저장 (province, city, town, detailAddress 추가)
-        Address newAddress = Address.builder()
-                .province(request.getProvince())  // 시도
-                .city(request.getCity())
-                .details("a")
-                .town("a")
-                .member(savedMember)              // 주소를 회원과 연결
-                .build();
-
-        addressRepository.save(newAddress);  // 주소 저장
-
-        return MemberJoinDTO.MemberJoinResponseDTO.builder()
-                .MemberId(savedMember.getId())  // 회원 ID만 반환
-                .build();
     }
 
 

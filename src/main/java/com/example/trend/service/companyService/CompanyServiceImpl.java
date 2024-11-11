@@ -1,8 +1,10 @@
 package com.example.trend.service.companyService;
 
+import com.example.trend.domain.Address;
 import com.example.trend.domain.Company;
 import com.example.trend.domain.enumClass.Role;
 import com.example.trend.domain.enumClass.Status;
+import com.example.trend.repository.AddressRepository;
 import com.example.trend.repository.CompanyRepository;
 import com.example.trend.web.a.dto.companyDTO.CompanyJoinDTO;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,7 @@ public class CompanyServiceImpl implements CompanyService {
 
     private final CompanyRepository companyRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final AddressRepository addressRepository;
 
 
     @Override
@@ -31,6 +34,15 @@ public class CompanyServiceImpl implements CompanyService {
                 .build();
 
         Company savedCompany = companyRepository.save(company);
+
+        Address newAddress = Address.builder()
+                .province(request.getProvince())  // 시도
+                .city(request.getCity())
+                .member(null)
+                .company(savedCompany)          // 주소를 회원과 연결
+                .build();
+
+        addressRepository.save(newAddress);
 
         return CompanyJoinDTO.CompanyJoinResponseDTO.builder()
                 .companyId(savedCompany.getId())

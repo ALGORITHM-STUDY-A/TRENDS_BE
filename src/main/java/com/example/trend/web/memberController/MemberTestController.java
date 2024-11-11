@@ -28,7 +28,7 @@ public class MemberTestController {
         // 전달된 request 데이터 로그로 확인
         log.info("Received request: {}", request);
 
-        MemberJoinDTO.MemberJoinResponseDTO response = memberService.joinMemberV2(request);
+        MemberJoinDTO.MemberJoinResponseDTO response = memberService.joinMember(request);
         return "redirect:/welcome";  // 회원가입 후 이동할 페이지
     }
 
