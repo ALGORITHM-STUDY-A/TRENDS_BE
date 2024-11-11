@@ -4,6 +4,8 @@ import com.example.trend.domain.common.BaseEntity;
 import com.example.trend.domain.enumClass.Role;
 import com.example.trend.domain.enumClass.Status;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
 import java.util.ArrayList;
@@ -46,6 +48,7 @@ public class Member extends BaseEntity {
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
     private Status status;
+
 
 
 

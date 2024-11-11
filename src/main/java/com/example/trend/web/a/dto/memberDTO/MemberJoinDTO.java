@@ -1,5 +1,6 @@
 package com.example.trend.web.a.dto.memberDTO;
 
+import com.example.trend.domain.enumClass.Status;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
@@ -33,6 +34,8 @@ public class MemberJoinDTO {
 
         @Schema(description = "시/군/구 입니다")
         String city;
+
+        Status status= Status.ACTIVE;
     }
 
 

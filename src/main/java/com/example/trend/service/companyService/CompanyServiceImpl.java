@@ -2,6 +2,7 @@ package com.example.trend.service.companyService;
 
 import com.example.trend.domain.Company;
 import com.example.trend.domain.enumClass.Role;
+import com.example.trend.domain.enumClass.Status;
 import com.example.trend.repository.CompanyRepository;
 import com.example.trend.web.a.dto.companyDTO.CompanyJoinDTO;
 import lombok.RequiredArgsConstructor;
@@ -26,6 +27,7 @@ public class CompanyServiceImpl implements CompanyService {
                 .password(bCryptPasswordEncoder.encode(request.getPassword()))
                 .companyName(request.getCompanyName())
                 .role(Role.ROLE_COM)
+                .status(Status.ACTIVE)
                 .build();
 
         Company savedCompany = companyRepository.save(company);
