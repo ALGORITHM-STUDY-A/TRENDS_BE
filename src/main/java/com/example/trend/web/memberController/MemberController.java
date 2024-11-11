@@ -23,7 +23,7 @@ public class MemberController {
 
     @Operation(summary = "회원가입 API")
     @PostMapping("/join")
-    public ApiResponse<MemberJoinDTO.MemberJoinResponseDTO> join( @RequestBody MemberJoinDTO.MemberJoinRequestDTO request) {
+    public ApiResponse<MemberJoinDTO.MemberJoinResponseDTO> join(@Valid @RequestBody MemberJoinDTO.MemberJoinRequestDTO request) {
 
         MemberJoinDTO.MemberJoinResponseDTO response = memberService.joinMember(request);
 
