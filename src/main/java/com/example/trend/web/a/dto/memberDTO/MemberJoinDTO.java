@@ -2,12 +2,12 @@ package com.example.trend.web.a.dto.memberDTO;
 
 import com.example.trend.domain.enumClass.Status;
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.Email;
 import lombok.*;
 
 public class MemberJoinDTO {
 
     @Getter
-    @Setter
     public static class MemberJoinRequestDTO{
 
 
