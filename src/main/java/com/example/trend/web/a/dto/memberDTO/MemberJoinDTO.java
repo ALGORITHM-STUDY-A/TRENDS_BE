@@ -17,6 +17,7 @@ public class MemberJoinDTO {
         @Schema(description = "회원이름 입니다")
         String name;
 
+        @Pattern(regexp = "^\\d{11}$", message = "핸드폰 번호는 11자리 숫자만 가능합니다.")
         @Schema(description = "회원전화번호 입니다")
         String phoneNumber;
 
