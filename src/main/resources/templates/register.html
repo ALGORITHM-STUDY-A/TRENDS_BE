@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 가입</title>
+</head>
+<body>
+    <h2>회원 가입</h2>
+    <form id="registerForm">
+        <!-- 기본 회원 정보 입력 -->
+        <input type="text" id="username" placeholder="아이디" required>
+        <input type="password" id="password" placeholder="비밀번호" required>
+        <input type="text" id="name" placeholder="이름" required>
+        <input type="text" id="nickname" placeholder="닉네임" required>
+        <input type="text" id="phoneNumber" placeholder="전화번호" required>
+        <input type="email" id="email" placeholder="이메일" required>
+
+        <!-- 주소 입력 -->
+        <input type="text" id="sample4_postcode" placeholder="우편번호" required>
+        <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+        <input type="text" id="sample4_roadAddress" placeholder="도로명 주소" required>
+        <input type="text" id="sample4_jibunAddress" placeholder="지번 주소">
+        <input type="text" id="sample4_detailAddress" placeholder="상세 주소">
+        <input type="text" id="sample4_extraAddress" placeholder="참고 항목">
+
+        <span id="guide" style="color:#999;display:none"></span><br>
+
+        <!-- 제출 버튼 -->
+        <button type="button" onclick="registerMember()">회원 가입</button>
+    </form>
+
+    <!-- Daum 주소 API -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        function sample4_execDaumPostcode() {
+            new daum.Postcode({
+                oncomplete: function(data) {
+                    var roadAddr = data.roadAddress;
+                    var extraRoadAddr = '';
+
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraRoadAddr += data.bname;
+                    }
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    if(extraRoadAddr !== ''){
+                        extraRoadAddr = ' (' + extraRoadAddr + ')';
+                    }
+
+                    document.getElementById('sample4_postcode').value = data.zonecode;
+                    document.getElementById("sample4_roadAddress").value = roadAddr;
+                    document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+
+                    if(roadAddr !== ''){
+                        document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+                    } else {
+                        document.getElementById("sample4_extraAddress").value = '';
+                    }
+
+                    var guideTextBox = document.getElementById("guide");
+                    if(data.autoRoadAddress) {
+                        var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                        guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                        guideTextBox.style.display = 'block';
+                    } else if(data.autoJibunAddress) {
+                        var expJibunAddr = data.autoJibunAddress;
+                        guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
+                        guideTextBox.style.display = 'block';
+                    } else {
+                        guideTextBox.innerHTML = '';
+                        guideTextBox.style.display = 'none';
+                    }
+                }
+            }).open();
+        }
+
+        async function registerMember() {
+            const userData = {
+                username: document.getElementById('username').value,
+                password: document.getElementById('password').value,
+                name: document.getElementById('name').value,
+                nickname: document.getElementById('nickname').value,
+                phoneNumber: document.getElementById('phoneNumber').value,
+                email: document.getElementById('email').value,
+                postcode: document.getElementById('sample4_postcode').value,
+                roadAddress: document.getElementById('sample4_roadAddress').value,
+                jibunAddress: document.getElementById('sample4_jibunAddress').value,
+                detailAddress: document.getElementById('sample4_detailAddress').value,
+                extraAddress: document.getElementById('sample4_extraAddress').value,
+            };
+
+            try {
+                const response = await fetch('/api/members/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(userData),
+                });
+
+                if (response.ok) {
+                    alert('회원 가입이 성공적으로 완료되었습니다.');
+                } else {
+                    alert('회원 가입 중 오류가 발생했습니다.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('회원 가입 요청 실패');
+            }
+        }
+    </script>
+</body>
+</html>
