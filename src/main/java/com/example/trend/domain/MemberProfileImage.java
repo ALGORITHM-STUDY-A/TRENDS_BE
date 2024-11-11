@@ -12,7 +12,7 @@ public class MemberProfileImage {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     // 이미지가 저장된 주소 링크
     private String imageLink;

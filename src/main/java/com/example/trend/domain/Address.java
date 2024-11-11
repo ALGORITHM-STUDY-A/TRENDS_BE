@@ -12,7 +12,7 @@ public class Address {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     /* 시/도 */
     @Column(nullable = false)
@@ -29,6 +29,8 @@ public class Address {
     /* 상세주소 */
     @Column(nullable = false)
     private String details;
+
+
 
 
     @ManyToOne(fetch = FetchType.LAZY)

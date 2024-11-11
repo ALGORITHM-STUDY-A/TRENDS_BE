@@ -16,7 +16,7 @@ public class Company {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     /*
         이메일 타입으로 username이 들어가야하지만, 그러면 로그인필터 하나로 두 개의 엔티티를 검증하는데에 들어가는 교체비용이 너무 크기 때문에
