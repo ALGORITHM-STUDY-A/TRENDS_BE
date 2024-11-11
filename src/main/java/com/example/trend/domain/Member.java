@@ -43,6 +43,7 @@ public class Member {
 
     // 회원 ACTIVE,INACTIVE 상태 추가
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Status status;
 
 
