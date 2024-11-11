@@ -3,113 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원 가입</title>
+    <title>회원가입</title>
 </head>
 <body>
-    <h2>회원 가입</h2>
-    <form id="registerForm">
-        <!-- 기본 회원 정보 입력 -->
-        <input type="text" id="username" placeholder="아이디" required>
-        <input type="password" id="password" placeholder="비밀번호" required>
-        <input type="text" id="name" placeholder="이름" required>
-        <input type="text" id="nickname" placeholder="닉네임" required>
-        <input type="text" id="phoneNumber" placeholder="전화번호" required>
-        <input type="email" id="email" placeholder="이메일" required>
+<form action="/register" method="POST">
+    <input type="text" id="sample4_postcode" name="postcode" placeholder="우편번호" readonly><br>
+    <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 
-        <!-- 주소 입력 -->
-        <input type="text" id="sample4_postcode" placeholder="우편번호" required>
-        <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-        <input type="text" id="sample4_roadAddress" placeholder="도로명 주소" required>
-        <input type="text" id="sample4_jibunAddress" placeholder="지번 주소">
-        <input type="text" id="sample4_detailAddress" placeholder="상세 주소">
-        <input type="text" id="sample4_extraAddress" placeholder="참고 항목">
+    <input type="text" id="sample4_roadAddress" name="roadAddress" placeholder="도로명주소" readonly><br>
+    <input type="text" id="sample4_jibunAddress" name="jibunAddress" placeholder="지번주소" readonly><br>
 
-        <span id="guide" style="color:#999;display:none"></span><br>
+    <span id="guide" style="color:#999;display:none"></span><br>
+    <input type="text" id="sample4_detailAddress" name="detailAddress" placeholder="상세주소"><br>
+    <input type="text" id="sample4_extraAddress" name="extraAddress" placeholder="참고항목" readonly><br>
 
-        <!-- 제출 버튼 -->
-        <button type="button" onclick="registerMember()">회원 가입</button>
-    </form>
+    <!-- 시/도와 시/군/구 입력 필드 추가 -->
+    <input type="text" id="province" name="province" placeholder="시/도" readonly><br>
+    <input type="text" id="city" name="city" placeholder="시/군/구" readonly><br>
 
-    <!-- Daum 주소 API -->
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script>
-        function sample4_execDaumPostcode() {
-            new daum.Postcode({
-                oncomplete: function(data) {
-                    var roadAddr = data.roadAddress;
-                    var extraRoadAddr = '';
+    <!-- 회원가입 정보 필드 (기본 정보) -->
+    <input type="text" name="username" placeholder="Username" required><br>
+    <input type="password" name="password" placeholder="Password" required><br>
+    <input type="text" name="name" placeholder="Name" required><br>
+    <input type="text" name="nickname" placeholder="Nickname" required><br>
+    <input type="text" name="phoneNumber" placeholder="Phone Number" required><br>
+    <input type="email" name="email" placeholder="Email" required><br>
 
-                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                        extraRoadAddr += data.bname;
-                    }
-                    if(data.buildingName !== '' && data.apartment === 'Y'){
-                        extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                    }
-                    if(extraRoadAddr !== ''){
-                        extraRoadAddr = ' (' + extraRoadAddr + ')';
-                    }
+    <button type="submit">회원가입</button>
+</form>
 
-                    document.getElementById('sample4_postcode').value = data.zonecode;
-                    document.getElementById("sample4_roadAddress").value = roadAddr;
-                    document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample4_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var roadAddr = data.roadAddress;
+                var extraRoadAddr = '';
 
-                    if(roadAddr !== ''){
-                        document.getElementById("sample4_extraAddress").value = extraRoadAddr;
-                    } else {
-                        document.getElementById("sample4_extraAddress").value = '';
-                    }
-
-                    var guideTextBox = document.getElementById("guide");
-                    if(data.autoRoadAddress) {
-                        var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                        guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                        guideTextBox.style.display = 'block';
-                    } else if(data.autoJibunAddress) {
-                        var expJibunAddr = data.autoJibunAddress;
-                        guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-                        guideTextBox.style.display = 'block';
-                    } else {
-                        guideTextBox.innerHTML = '';
-                        guideTextBox.style.display = 'none';
-                    }
+                // 동/로/가 등이 포함된 경우
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
                 }
-            }).open();
-        }
-
-        async function registerMember() {
-            const userData = {
-                username: document.getElementById('username').value,
-                password: document.getElementById('password').value,
-                name: document.getElementById('name').value,
-                nickname: document.getElementById('nickname').value,
-                phoneNumber: document.getElementById('phoneNumber').value,
-                email: document.getElementById('email').value,
-                postcode: document.getElementById('sample4_postcode').value,
-                roadAddress: document.getElementById('sample4_roadAddress').value,
-                jibunAddress: document.getElementById('sample4_jibunAddress').value,
-                detailAddress: document.getElementById('sample4_detailAddress').value,
-                extraAddress: document.getElementById('sample4_extraAddress').value,
-            };
-
-            try {
-                const response = await fetch('/api/members/register', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(userData),
-                });
-
-                if (response.ok) {
-                    alert('회원 가입이 성공적으로 완료되었습니다.');
-                } else {
-                    alert('회원 가입 중 오류가 발생했습니다.');
+                // 아파트 건물명 포함
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                alert('회원 가입 요청 실패');
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+
+                // 주소 입력
+                document.getElementById('sample4_postcode').value = data.zonecode;
+                document.getElementById("sample4_roadAddress").value = roadAddr;
+                document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+                document.getElementById("sample4_extraAddress").value = roadAddr !== '' ? extraRoadAddr : '';
+
+                // 시/도와 시/군/구 추출
+                var addressComponents = roadAddr.split(" "); // 공백을 기준으로 주소 분리
+                if (addressComponents.length > 1) {
+                    document.getElementById("province").value = addressComponents[0]; // 시/도
+                    document.getElementById("city").value = addressComponents[1]; // 시/군/구
+                }
             }
-        }
-    </script>
+        }).open();
+    }
+</script>
 </body>
 </html>

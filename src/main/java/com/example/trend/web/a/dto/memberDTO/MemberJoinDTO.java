@@ -7,6 +7,7 @@ import lombok.*;
 public class MemberJoinDTO {
 
     @Getter
+    @Setter
     public static class MemberJoinRequestDTO{
 
 
@@ -15,7 +16,7 @@ public class MemberJoinDTO {
 
         @Schema(description = "회원전화번호 입니다")
         String phoneNumber;
-        
+
         @Schema(description = "회원이메일 입니다")
         String email;
 
