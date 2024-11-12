@@ -96,6 +96,23 @@ public class MemberServiceImpl implements MemberService {
 
     }
 
+    @Override
+    public MemberProfileFindDTO.FindMemberUsernameResponseDTO getUsernamesWithEmail(MemberProfileFindDTO.FindMemberUsernameWithEmailsRequestDTO request){
+
+
+
+        Member byEmail = memberRepository.findByEmail(request.getEmail());
+        if (byEmail == null) {
+            throw new MemberCategoryHandler(ErrorStatus.MEMBER_NOT_FOUND);
+        }
+
+
+
+        return MemberProfileFindDTO.FindMemberUsernameResponseDTO.builder()
+                .username(byEmail.getUsername())
+                .build();
+    }
+
 
 
 
