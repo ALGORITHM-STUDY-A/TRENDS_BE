@@ -53,6 +53,8 @@ public class CompanyController {
     @PatchMapping("")
     public void deleteCompany(@AuthenticationPrincipal UserDetails userDetails){
 
+        companyService.deleteCompany(userDetails.getUsername());
+
     }
 
 
