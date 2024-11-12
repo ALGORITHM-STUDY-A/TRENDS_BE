@@ -37,13 +37,13 @@ class MemberServiceImplTest {
     @Test
     void testDeleteMember() {
 
-        // Given: 특정 memberId를 가진 Member 객체를 반환하도록 설정
-        Long memberId = 1L;
+        // Given: 특정 username을 가진 Member 객체를 반환하도록 설정
+        String username = "testUser";
 
-        when(memberRepository.findById(memberId)).thenReturn(Optional.of(member));
+        when(memberRepository.findByUsername(username)).thenReturn(Optional.of(member));
 
         // When: deleteMember 메서드 호출
-        memberService.deleteMember(memberId);
+        memberService.deleteMember(username);
 
         // Then: Member 객체의 status가 INACTIVE로 변경되었는지 확인
         assertEquals(Status.INACTIVE, member.getStatus(), "Member STATUS가 INACTIVE 입니다");
