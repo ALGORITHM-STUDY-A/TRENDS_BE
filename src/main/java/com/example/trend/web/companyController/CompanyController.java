@@ -51,10 +51,10 @@ public class CompanyController {
     // 기업 프로필 삭제
     @Operation(summary = "기업 회원탈퇴 API")
     @PatchMapping("")
-    public void deleteCompany(@AuthenticationPrincipal UserDetails userDetails){
+    public ApiResponse<String> deleteCompany(@AuthenticationPrincipal UserDetails userDetails){
 
         companyService.deleteCompany(userDetails.getUsername());
-
+        return ApiResponse.onSuccess("성공적으로 삭제 되었습니다");
     }
 
 
