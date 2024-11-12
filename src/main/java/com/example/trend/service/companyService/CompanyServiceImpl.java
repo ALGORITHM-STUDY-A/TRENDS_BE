@@ -5,6 +5,7 @@ import com.example.trend.api.exception.handler.CompanyCategoryHandler;
 import com.example.trend.api.exception.handler.MemberCategoryHandler;
 import com.example.trend.domain.Address;
 import com.example.trend.domain.Company;
+import com.example.trend.domain.Member;
 import com.example.trend.domain.enumClass.Role;
 import com.example.trend.domain.enumClass.Status;
 import com.example.trend.repository.AddressRepository;
@@ -56,10 +57,17 @@ public class CompanyServiceImpl implements CompanyService {
 
 
 
+
+
+
+
+
     // username 중복 검사 메서드
     public void duplicateUsername(String username) {
         if (companyRepository.existsByUsername(username)) {
             throw new CompanyCategoryHandler(ErrorStatus.COMPANY_USERNAME_DUPLICATE);
         }
     }
+
+
 }
