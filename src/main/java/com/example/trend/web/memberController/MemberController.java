@@ -65,9 +65,18 @@ public class MemberController {
 
 
     // 아이디 찾기 - 휴대폰 번호로 찾기 (인증 외부 API 필요)
+    @Operation(summary = "휴대폰 번호로 아이디 찾기 API")
+    @GetMapping("/find-usernames/phoneNumbers")
+    public void getUsernamesWithPhone(MemberProfileFindDTO.FindMemberUsernameRequestDTO request){
+
+
+    }
+
+    // 아이디 찾기 - 이메일로 찾기 (인증 외부 API 필요)
     @Operation(summary = "아이디 찾기 API")
-    @GetMapping("/find-usernames")
-    public void getUsernames(MemberProfileFindDTO.FindMemberUsernameRequestDTO request){
+    @GetMapping("/find-usernames/emails")
+    public void getUsernamesWithEmails(MemberProfileFindDTO.FindMemberUsernameRequestDTO request){
+
 
     }
 
