@@ -9,7 +9,18 @@ public class MemberProfileFindDTO {
     @NoArgsConstructor(access = AccessLevel.PROTECTED)
     @AllArgsConstructor
     @Getter
-    public static class FindMemberUsernameRequestDTO{
+    public static class FindMemberUsernameWithPhoneNumbersRequestDTO{
+
+        @Schema(description = "핸드폰 번호 입니다")
+        String phoneNumber;
+
+    }
+
+    @Builder
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor
+    @Getter
+    public static class FindMemberUsernameWithEmailsRequestDTO{
 
         @Schema(description = "핸드폰 번호 입니다")
         String phoneNumber;

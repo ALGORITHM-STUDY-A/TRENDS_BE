@@ -9,6 +9,7 @@ import com.example.trend.domain.enumClass.Status;
 import com.example.trend.repository.AddressRepository;
 import com.example.trend.repository.MemberRepository;
 import com.example.trend.web.a.dto.memberDTO.MemberJoinDTO;
+import com.example.trend.web.a.dto.memberDTO.MemberProfileFindDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -76,6 +77,10 @@ public class MemberServiceImpl implements MemberService {
         Member findMember = getMemberByUsername(username);
 
         findMember.setInactive();  // 객체의 status 필드 수정
+
+    }
+
+    public String getUsernamesWithPhone(MemberProfileFindDTO.FindMemberUsernameRequestDTO){
 
     }
 
