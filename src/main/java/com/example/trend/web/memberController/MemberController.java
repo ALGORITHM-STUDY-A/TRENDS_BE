@@ -55,9 +55,10 @@ public class MemberController {
     // 회원 탈퇴 API
     @Operation(summary = "회원 탈퇴 API")
     @PatchMapping("")
-    public void deleteMember(@AuthenticationPrincipal UserDetails userDetails){
+    public ApiResponse<String> deleteMember(@AuthenticationPrincipal UserDetails userDetails){
 
         memberService.deleteMember(userDetails.getUsername());
+        return ApiResponse.onSuccess("성공적으로 삭제 되었습니다");
 
     }
 
