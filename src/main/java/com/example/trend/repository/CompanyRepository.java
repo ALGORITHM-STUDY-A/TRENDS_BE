@@ -16,6 +16,6 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
 
     Boolean existsByUsername(String username);
 
-    @Query("SELECT m FROM Member m WHERE m.status = :status AND m.inactiveDate <= :cutoffDate")
-    List<Member> findInactiveMembersForDeletion(@Param("status") Status status, @Param("cutoffDate") LocalDateTime cutoffDate);
+    @Query("SELECT c FROM Company c WHERE c.status = :status AND c.inactiveDate <= :cutoffDate")
+    List<Company> findInactiveMembersForDeletion(@Param("status") Status status, @Param("cutoffDate") LocalDateTime cutoffDate);
 }
