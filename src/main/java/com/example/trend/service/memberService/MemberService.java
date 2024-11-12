@@ -11,7 +11,7 @@ public interface MemberService {
 
     MemberJoinDTO.MemberJoinResponseDTO joinMember(MemberJoinDTO.MemberJoinRequestDTO request);
 
-    void deleteMember(Long memberId);
+    void deleteMember(String username);
 
     // 매일 자정에 실행
     @Scheduled(cron = "0 0 0 * * ?")

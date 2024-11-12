@@ -57,6 +57,8 @@ public class MemberController {
     @PatchMapping("")
     public void deleteMember(@AuthenticationPrincipal UserDetails userDetails){
 
+        memberService.deleteMember(userDetails.getUsername());
+
     }
 
 
