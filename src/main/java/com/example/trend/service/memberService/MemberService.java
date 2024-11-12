@@ -7,5 +7,9 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public interface MemberService {
+
     MemberJoinDTO.MemberJoinResponseDTO joinMember(MemberJoinDTO.MemberJoinRequestDTO request);
+
+    // username 중복 검사 메서드
+    void duplicateUsername(String username);
 }

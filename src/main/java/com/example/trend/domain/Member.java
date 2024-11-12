@@ -69,4 +69,13 @@ public class Member extends BaseEntity {
 
     @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
     private List<MemberProfileImage> memberProfileImages=new ArrayList<>();
+
+
+
+    /* Setter 메서드 */
+
+    public void setInactive() {
+        this.status = Status.INACTIVE;
+    }
+
 }
