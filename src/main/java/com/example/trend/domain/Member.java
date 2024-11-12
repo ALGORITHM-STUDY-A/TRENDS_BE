@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +50,9 @@ public class Member extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    // 회원 비활성화 상태 날짜를 기록하는 필드
+    private LocalDateTime inactiveDate;
+
 
 
 
@@ -74,8 +78,12 @@ public class Member extends BaseEntity {
 
     /* Setter 메서드 */
 
+    // status를 INACTIVE로 변경하는 메서드
     public void setInactive() {
+
         this.status = Status.INACTIVE;
+        this.inactiveDate = LocalDateTime.now();  // 비활성화 날짜 기록
+
     }
 
 }

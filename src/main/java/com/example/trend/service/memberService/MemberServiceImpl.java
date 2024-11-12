@@ -66,6 +66,14 @@ public class MemberServiceImpl implements MemberService {
     }
 
 
+    @Override
+    public void deleteMember(Long memberId) {
+
+        Member findMember = getMemberById(memberId);
+
+        findMember.setInactive();  // 객체의 status 필드 수정
+
+    }
 
 
     // username 중복 검사 메서드
