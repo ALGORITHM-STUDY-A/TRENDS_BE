@@ -76,10 +76,13 @@ public class MemberController {
     }
 
     // 아이디 찾기 - 이메일로 찾기 (인증 외부 API 필요)
-    @Operation(summary = "아이디 찾기 API")
+    @Operation(summary = "이메일로 아이디 찾기 API")
     @GetMapping("/find-usernames/emails")
-    public void getUsernamesWithEmails(MemberProfileFindDTO.FindMemberUsernameWithEmailsRequestDTO request){
+    public ApiResponse<MemberProfileFindDTO.FindMemberUsernameResponseDTO> getUsernamesWithEmails(MemberProfileFindDTO.FindMemberUsernameWithEmailsRequestDTO request){
 
+        MemberProfileFindDTO.FindMemberUsernameResponseDTO result = memberService.getUsernamesWithEmail(request);
+
+        return ApiResponse.onSuccess(result);
 
     }
 
