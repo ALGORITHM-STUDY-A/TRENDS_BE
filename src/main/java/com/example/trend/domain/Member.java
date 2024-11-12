@@ -76,7 +76,7 @@ public class Member extends BaseEntity {
 
 
 
-    /* Setter 메서드 */
+    /* 연관관계 메서드 */
 
     // status를 INACTIVE로 변경하는 메서드
     public void setInactive() {
