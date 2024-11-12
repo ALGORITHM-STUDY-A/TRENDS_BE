@@ -10,6 +10,8 @@ public interface MemberService {
 
     MemberJoinDTO.MemberJoinResponseDTO joinMember(MemberJoinDTO.MemberJoinRequestDTO request);
 
+    void deleteMember(Long memberId);
+
     // username 중복 검사 메서드
     void duplicateUsername(String username);
 }
