@@ -16,6 +16,8 @@ public interface MemberService {
 
     MemberProfileFindDTO.FindMemberUsernameResponseDTO getUsernamesWithPhone(MemberProfileFindDTO.FindMemberUsernameWithPhoneNumbersRequestDTO request);
 
+    MemberProfileFindDTO.FindMemberUsernameResponseDTO getUsernamesWithEmail(MemberProfileFindDTO.FindMemberUsernameWithEmailsRequestDTO request);
+
     // 매일 자정에 실행
     @Scheduled(cron = "0 0 0 * * ?")
     void deleteOldInactiveMembers();
