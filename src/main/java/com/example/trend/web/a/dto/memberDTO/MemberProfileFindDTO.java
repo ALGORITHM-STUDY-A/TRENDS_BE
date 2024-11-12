@@ -38,7 +38,7 @@ public class MemberProfileFindDTO {
     @Getter
     public static class FindMemberUsernameWithEmailsRequestDTO{
 
-        @Schema(description = "핸드폰 번호 입니다")
+        @Schema(description = "이메일 입니다")
         String email;
 
     }
