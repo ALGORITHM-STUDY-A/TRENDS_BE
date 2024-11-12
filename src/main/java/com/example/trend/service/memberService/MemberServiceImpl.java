@@ -71,9 +71,9 @@ public class MemberServiceImpl implements MemberService {
 
 
     @Override
-    public void deleteMember(Long memberId) {
+    public void deleteMember(String username) {
 
-        Member findMember = getMemberById(memberId);
+        Member findMember = getMemberByUsername(username);
 
         findMember.setInactive();  // 객체의 status 필드 수정
 
@@ -111,8 +111,8 @@ public class MemberServiceImpl implements MemberService {
 
 
     // 회원 찾는 메서드
-    public Member getMemberById(Long id){
-        return memberRepository.findById(id)
+    public Member getMemberByUsername(String username){
+        return memberRepository.findByUsername(username)
                 .orElseThrow(()-> new MemberCategoryHandler(ErrorStatus.MEMBER_NOT_FOUND));
     }
 
