@@ -9,13 +9,16 @@ import com.example.trend.domain.enumClass.Status;
 import com.example.trend.repository.AddressRepository;
 import com.example.trend.repository.MemberRepository;
 import com.example.trend.web.a.dto.memberDTO.MemberJoinDTO;
+import com.example.trend.web.a.dto.memberDTO.MemberProfileFindDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @Transactional
@@ -26,6 +29,8 @@ public class MemberServiceImpl implements MemberService {
     private final MemberRepository memberRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final AddressRepository addressRepository;
+
+
 
     @Override
     public MemberJoinDTO.MemberJoinResponseDTO joinMember(MemberJoinDTO.MemberJoinRequestDTO request){
@@ -66,6 +71,41 @@ public class MemberServiceImpl implements MemberService {
     }
 
 
+    @Override
+    public void deleteMember(String username) {
+
+        Member findMember = getMemberByUsername(username);
+
+        findMember.setInactive();  // 객체의 status 필드 수정
+
+    }
+
+    public String getUsernamesWithPhone(MemberProfileFindDTO.FindMemberUsernameRequestDTO){
+
+    }
+
+
+
+
+
+
+
+
+
+
+    // 매일 자정에 실행
+    @Scheduled(cron = "0 0 0 * * ?")
+    @Override
+    public void deleteOldInactiveMembers() {
+
+        LocalDateTime cutoffDate = LocalDateTime.now().minusDays(30);  // 30일 이전 날짜 계산
+        List<Member> membersToDelete = memberRepository.findInactiveMembersForDeletion(Status.INACTIVE, cutoffDate);
+
+        // 30일 지난 회원 삭제
+        memberRepository.deleteAll(membersToDelete);
+
+    }
+
 
     // username 중복 검사 메서드
     public void duplicateUsername(String username) {
@@ -76,8 +116,8 @@ public class MemberServiceImpl implements MemberService {
 
 
     // 회원 찾는 메서드
-    public Member getMemberById(Long id){
-        return memberRepository.findById(id)
+    public Member getMemberByUsername(String username){
+        return memberRepository.findByUsername(username)
                 .orElseThrow(()-> new MemberCategoryHandler(ErrorStatus.MEMBER_NOT_FOUND));
     }
 
