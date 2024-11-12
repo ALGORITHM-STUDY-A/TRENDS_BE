@@ -93,6 +93,8 @@ public class MemberController {
     @GetMapping("/find-passwords")
     public void getPasswords(MemberProfileFindDTO.FindMemberPasswordRequestDTO request){
 
+        
+
     }
 }
 

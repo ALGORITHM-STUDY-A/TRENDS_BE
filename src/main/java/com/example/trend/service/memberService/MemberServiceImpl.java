@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -100,17 +101,24 @@ public class MemberServiceImpl implements MemberService {
     public MemberProfileFindDTO.FindMemberUsernameResponseDTO getUsernamesWithEmail(MemberProfileFindDTO.FindMemberUsernameWithEmailsRequestDTO request){
 
 
-
         Member byEmail = memberRepository.findByEmail(request.getEmail());
         if (byEmail == null) {
             throw new MemberCategoryHandler(ErrorStatus.MEMBER_NOT_FOUND);
         }
 
 
-
         return MemberProfileFindDTO.FindMemberUsernameResponseDTO.builder()
                 .username(byEmail.getUsername())
                 .build();
+    }
+
+    // 비밀번호 재설정 메서드
+    public MemberProfileFindDTO.FindMemberPasswordResponseDTO getPassword(MemberProfileFindDTO.FindMemberPasswordRequestDTO request){
+
+        Member byUsername = getMemberByUsername(request.getUsername());
+
+
+
     }
 
 
