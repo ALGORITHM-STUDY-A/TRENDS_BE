@@ -80,7 +80,19 @@ public class MemberServiceImpl implements MemberService {
 
     }
 
-    public String getUsernamesWithPhone(MemberProfileFindDTO.FindMemberUsernameRequestDTO){
+
+    @Override
+    public MemberProfileFindDTO.FindMemberUsernameResponseDTO getUsernamesWithPhone(MemberProfileFindDTO.FindMemberUsernameWithPhoneNumbersRequestDTO request){
+
+        Member byPhoneNumber = memberRepository.findByPhoneNumber(request.getPhoneNumber());
+
+        if (byPhoneNumber == null) {
+            throw new MemberCategoryHandler(ErrorStatus.MEMBER_NOT_FOUND);
+        }
+
+        return MemberProfileFindDTO.FindMemberUsernameResponseDTO.builder()
+                .username(byPhoneNumber.getUsername())
+                .build();
 
     }
 
