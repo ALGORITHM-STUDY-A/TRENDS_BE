@@ -11,9 +11,13 @@ import com.example.trend.repository.MemberRepository;
 import com.example.trend.web.a.dto.memberDTO.MemberJoinDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @Transactional
@@ -72,6 +76,28 @@ public class MemberServiceImpl implements MemberService {
         Member findMember = getMemberById(memberId);
 
         findMember.setInactive();  // 객체의 status 필드 수정
+
+    }
+
+
+
+
+
+
+
+
+
+
+    // 매일 자정에 실행
+    @Scheduled(cron = "0 0 0 * * ?")
+    @Override
+    public void deleteOldInactiveMembers() {
+
+        LocalDateTime cutoffDate = LocalDateTime.now().minusDays(30);  // 30일 이전 날짜 계산
+        List<Member> membersToDelete = memberRepository.findInactiveMembersForDeletion(Status.INACTIVE, cutoffDate);
+
+        // 30일 지난 회원 삭제
+        memberRepository.deleteAll(membersToDelete);
 
     }
 
