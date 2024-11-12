@@ -1,5 +1,6 @@
 package com.example.trend.domain;
 
+import com.example.trend.domain.common.BaseEntity;
 import com.example.trend.domain.enumClass.Category;
 import com.example.trend.domain.enumClass.PlanStatus;
 import jakarta.persistence.*;
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Getter
-public class Plan {
+public class Plan extends BaseEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
