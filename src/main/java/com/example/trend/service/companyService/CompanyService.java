@@ -13,7 +13,7 @@ public interface CompanyService {
 
     void deleteCompany(String username);
 
-    CompanyProfileFindDTO.CompanyUsernameResponseDTO findCompanyByUsername(CompanyProfileFindDTO.CompanyUsernameRequestDTO request);
+    CompanyProfileFindDTO.CompanyUsernameResponseDTO getUsernames(CompanyProfileFindDTO.CompanyUsernameRequestDTO request);
 
     // 매일 자정에 실행
     @Scheduled(cron = "0 0 0 * * ?")

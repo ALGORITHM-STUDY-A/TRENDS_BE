@@ -71,7 +71,7 @@ public class CompanyServiceImpl implements CompanyService {
 
 
     @Override
-    public CompanyProfileFindDTO.CompanyUsernameResponseDTO findCompanyByUsername(CompanyProfileFindDTO.CompanyUsernameRequestDTO request) {
+    public CompanyProfileFindDTO.CompanyUsernameResponseDTO getUsernames(CompanyProfileFindDTO.CompanyUsernameRequestDTO request) {
 
 
         Company findCompany = companyRepository.findByName(request.getName())

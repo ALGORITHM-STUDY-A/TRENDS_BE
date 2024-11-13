@@ -64,7 +64,7 @@ public class CompanyController {
     @GetMapping("/find-usernames")
     public ApiResponse<CompanyProfileFindDTO.CompanyUsernameResponseDTO> getUsernames(CompanyProfileFindDTO.CompanyUsernameRequestDTO request){
 
-        CompanyProfileFindDTO.CompanyUsernameResponseDTO result = companyService.findCompanyByUsername(request);
+        CompanyProfileFindDTO.CompanyUsernameResponseDTO result = companyService.getUsernames(request);
 
         return ApiResponse.onSuccess(result);
     }
