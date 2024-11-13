@@ -1,4 +1,4 @@
-name: trend_CI
+name: TRENDS_CI
 
 on:
   pull_request:
