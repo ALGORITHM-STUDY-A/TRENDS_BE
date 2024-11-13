@@ -1,5 +1,6 @@
 package com.example.trend.domain;
 
+import com.example.trend.domain.common.BaseEntity;
 import com.example.trend.domain.enumClass.CommentType;
 import jakarta.persistence.*;
 import lombok.*;
@@ -11,7 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 @Getter
-public class Comment {
+public class Comment extends BaseEntity {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
