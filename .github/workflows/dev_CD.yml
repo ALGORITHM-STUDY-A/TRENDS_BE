@@ -2,7 +2,7 @@ name: TRENDS_CD
 
 on:
   push:
-    branches: [ "develop" ]
+    branches: [ "main" ]
 
 permissions:
   contents: read
