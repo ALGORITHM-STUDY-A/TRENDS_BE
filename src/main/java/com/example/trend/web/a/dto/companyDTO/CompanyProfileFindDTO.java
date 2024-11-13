@@ -45,5 +45,22 @@ public class CompanyProfileFindDTO {
         @Schema(description = "회사 이메일 입니다")
         String email;
 
+        @Schema(description = "새로운 비밀번호 입니다")
+        String password;
     }
+
+
+
+
+    @Builder
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor
+    @Getter
+    public static class CompanyUsernameResponseDTO {
+
+        @Schema(description = "username 입니다")
+        String username;
+
+    }
+
 }

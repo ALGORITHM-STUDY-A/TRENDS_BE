@@ -23,14 +23,6 @@ public class Address extends BaseEntity {
     @Column(nullable = false)
     private String city;
 
-    /* 읍/면/동 */
-    @Column(nullable = false)
-    private String town;
-
-    /* 상세주소 */
-    @Column(nullable = false)
-    private String details;
-
 
 
 

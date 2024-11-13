@@ -7,6 +7,7 @@ import com.example.trend.web.a.dto.memberDTO.MemberProfileFindDTO;
 import com.example.trend.web.a.dto.memberDTO.MemberProfileUpdateDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,7 +23,7 @@ public class MemberController {
 
     @Operation(summary = "회원가입 API")
     @PostMapping("/join")
-    public ApiResponse<MemberJoinDTO.MemberJoinResponseDTO> join(@RequestBody MemberJoinDTO.MemberJoinRequestDTO request) {
+    public ApiResponse<MemberJoinDTO.MemberJoinResponseDTO> join(@Valid @RequestBody MemberJoinDTO.MemberJoinRequestDTO request) {
 
         MemberJoinDTO.MemberJoinResponseDTO response = memberService.joinMember(request);
 
@@ -54,16 +55,34 @@ public class MemberController {
     // 회원 탈퇴 API
     @Operation(summary = "회원 탈퇴 API")
     @PatchMapping("")
-    public void deleteMember(@AuthenticationPrincipal UserDetails userDetails){
+    public ApiResponse<String> deleteMember(@AuthenticationPrincipal UserDetails userDetails){
+
+        memberService.deleteMember(userDetails.getUsername());
+        return ApiResponse.onSuccess("성공적으로 삭제 되었습니다");
 
     }
 
 
 
     // 아이디 찾기 - 휴대폰 번호로 찾기 (인증 외부 API 필요)
-    @Operation(summary = "아이디 찾기 API")
-    @GetMapping("/find-usernames")
-    public void getUsernames(MemberProfileFindDTO.FindMemberUsernameRequestDTO request){
+    @Operation(summary = "휴대폰 번호로 아이디 찾기 API")
+    @GetMapping("/find-usernames/phoneNumbers")
+    public ApiResponse<MemberProfileFindDTO.FindMemberUsernameResponseDTO> getUsernamesWithPhone(MemberProfileFindDTO.FindMemberUsernameWithPhoneNumbersRequestDTO request){
+
+        MemberProfileFindDTO.FindMemberUsernameResponseDTO result = memberService.getUsernamesWithPhone(request);
+
+        return ApiResponse.onSuccess(result);
+
+    }
+
+    // 아이디 찾기 - 이메일로 찾기 (인증 외부 API 필요)
+    @Operation(summary = "이메일로 아이디 찾기 API")
+    @GetMapping("/find-usernames/emails")
+    public ApiResponse<MemberProfileFindDTO.FindMemberUsernameResponseDTO> getUsernamesWithEmails(MemberProfileFindDTO.FindMemberUsernameWithEmailsRequestDTO request){
+
+        MemberProfileFindDTO.FindMemberUsernameResponseDTO result = memberService.getUsernamesWithEmail(request);
+
+        return ApiResponse.onSuccess(result);
 
     }
 
@@ -72,8 +91,11 @@ public class MemberController {
     // 비밀번호 찾기 - 아이디,이름,이메일로 찾기
     @Operation(summary = "비밀번호 찾기 API")
     @GetMapping("/find-passwords")
-    public void getPasswords(MemberProfileFindDTO.FindMemberPasswordRequestDTO request){
+    public ApiResponse<MemberProfileFindDTO.FindMemberPasswordResponseDTO> getPasswords(MemberProfileFindDTO.FindMemberPasswordRequestDTO request){
 
+        MemberProfileFindDTO.FindMemberPasswordResponseDTO password = memberService.getPassword(request);
+
+        return ApiResponse.onSuccess(password);
     }
 }
 

@@ -51,8 +51,10 @@ public class CompanyController {
     // 기업 프로필 삭제
     @Operation(summary = "기업 회원탈퇴 API")
     @PatchMapping("")
-    public void deleteCompany(@AuthenticationPrincipal UserDetails userDetails){
+    public ApiResponse<String> deleteCompany(@AuthenticationPrincipal UserDetails userDetails){
 
+        companyService.deleteCompany(userDetails.getUsername());
+        return ApiResponse.onSuccess("성공적으로 삭제 되었습니다");
     }
 
 
@@ -60,8 +62,11 @@ public class CompanyController {
     // 기업 아이디 찾기 - 회사이름, 담당자 이름, 전화번호 인증
     @Operation(summary = "기업 아이디 찾기 API")
     @GetMapping("/find-usernames")
-    public void getUsernames(CompanyProfileFindDTO.CompanyUsernameRequestDTO request){
+    public ApiResponse<CompanyProfileFindDTO.CompanyUsernameResponseDTO> getUsernames(CompanyProfileFindDTO.CompanyUsernameRequestDTO request){
 
+        CompanyProfileFindDTO.CompanyUsernameResponseDTO result = companyService.getUsernames(request);
+
+        return ApiResponse.onSuccess(result);
     }
 
 
