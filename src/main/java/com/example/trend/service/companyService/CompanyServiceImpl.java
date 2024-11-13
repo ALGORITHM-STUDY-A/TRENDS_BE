@@ -2,15 +2,14 @@ package com.example.trend.service.companyService;
 
 import com.example.trend.api.code.status.ErrorStatus;
 import com.example.trend.api.exception.handler.CompanyCategoryHandler;
-import com.example.trend.api.exception.handler.MemberCategoryHandler;
 import com.example.trend.domain.Address;
 import com.example.trend.domain.Company;
-import com.example.trend.domain.Member;
 import com.example.trend.domain.enumClass.Role;
 import com.example.trend.domain.enumClass.Status;
 import com.example.trend.repository.AddressRepository;
 import com.example.trend.repository.CompanyRepository;
 import com.example.trend.web.a.dto.companyDTO.CompanyJoinDTO;
+import com.example.trend.web.a.dto.companyDTO.CompanyProfileFindDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -60,6 +59,7 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
 
+
     @Override
     public void deleteCompany(String username) {
 
@@ -67,6 +67,28 @@ public class CompanyServiceImpl implements CompanyService {
         companyByUsername.setInactive();  // 객체의 status 필드 수정
 
     }
+
+
+
+    @Override
+    public CompanyProfileFindDTO.CompanyUsernameResponseDTO findCompanyByUsername(CompanyProfileFindDTO.CompanyUsernameRequestDTO request) {
+
+
+        Company findCompany = companyRepository.findByName(request.getName())
+                .orElseThrow(() -> new CompanyCategoryHandler(ErrorStatus.COMPANY_NOT_FOUND));
+
+
+        return CompanyProfileFindDTO.CompanyUsernameResponseDTO.builder()
+                .username(findCompany.getUsername())
+                .build();
+    }
+
+
+
+
+
+
+
 
 
 

@@ -62,8 +62,11 @@ public class CompanyController {
     // 기업 아이디 찾기 - 회사이름, 담당자 이름, 전화번호 인증
     @Operation(summary = "기업 아이디 찾기 API")
     @GetMapping("/find-usernames")
-    public void getUsernames(CompanyProfileFindDTO.CompanyUsernameRequestDTO request){
+    public ApiResponse<CompanyProfileFindDTO.CompanyUsernameResponseDTO> getUsernames(CompanyProfileFindDTO.CompanyUsernameRequestDTO request){
 
+        CompanyProfileFindDTO.CompanyUsernameResponseDTO result = companyService.findCompanyByUsername(request);
+
+        return ApiResponse.onSuccess(result);
     }
 
 

@@ -46,4 +46,19 @@ public class CompanyProfileFindDTO {
         String email;
 
     }
+
+
+
+
+    @Builder
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor
+    @Getter
+    public static class CompanyUsernameResponseDTO {
+
+        @Schema(description = "username 입니다")
+        String username;
+
+    }
+
 }
