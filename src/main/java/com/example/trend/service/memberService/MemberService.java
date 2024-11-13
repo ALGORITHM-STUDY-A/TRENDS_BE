@@ -18,6 +18,9 @@ public interface MemberService {
 
     MemberProfileFindDTO.FindMemberUsernameResponseDTO getUsernamesWithEmail(MemberProfileFindDTO.FindMemberUsernameWithEmailsRequestDTO request);
 
+    // 비밀번호 재설정 메서드
+    MemberProfileFindDTO.FindMemberPasswordResponseDTO getPassword(MemberProfileFindDTO.FindMemberPasswordRequestDTO request);
+
     // 매일 자정에 실행
     @Scheduled(cron = "0 0 0 * * ?")
     void deleteOldInactiveMembers();

@@ -19,7 +19,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -44,7 +43,7 @@ public class MemberServiceImpl implements MemberService {
 
         Member newMember= Member.builder()
                 .username(request.getUsername())
-                .password(bCryptPasswordEncoder.encode(request.getPassword()))
+                .password(encodePassword(request.getPassword()))
                 .name(request.getName())
                 .nickname(request.getNickname())
                 .role(Role.ROLE_USER)
@@ -113,12 +112,26 @@ public class MemberServiceImpl implements MemberService {
     }
 
     // 비밀번호 재설정 메서드
+    @Override
     public MemberProfileFindDTO.FindMemberPasswordResponseDTO getPassword(MemberProfileFindDTO.FindMemberPasswordRequestDTO request){
 
         Member byUsername = getMemberByUsername(request.getUsername());
-        byUsername.
 
+        if (!request.getName().equals(byUsername.getName())) {
+           throw new MemberCategoryHandler(ErrorStatus.MEMBER_NOT_FOUND);
+        }
 
+        if (!request.getEmail().equals(byUsername.getEmail())) {
+            throw new MemberCategoryHandler(ErrorStatus.MEMBER_NOT_FOUND);
+        }
+
+        String newPassword = encodePassword(request.getPassword());
+
+        byUsername.setPassword(newPassword);
+
+        return MemberProfileFindDTO.FindMemberPasswordResponseDTO.builder()
+                .password(byUsername.getPassword())
+                .build();
 
     }
 
