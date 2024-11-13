@@ -125,6 +125,10 @@ public class MemberServiceImpl implements MemberService {
             throw new MemberCategoryHandler(ErrorStatus.MEMBER_NOT_FOUND);
         }
 
+        if (request.getPassword().equals(byUsername.getPassword())) {
+            throw new MemberCategoryHandler(ErrorStatus.MEMBER_NOT_FOUND);
+        }
+
         String newPassword = encodePassword(request.getPassword());
 
         byUsername.setPassword(newPassword);
