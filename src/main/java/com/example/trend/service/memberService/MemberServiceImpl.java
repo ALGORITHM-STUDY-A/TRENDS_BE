@@ -118,15 +118,18 @@ public class MemberServiceImpl implements MemberService {
         Member byUsername = getMemberByUsername(request.getUsername());
 
         if (!request.getName().equals(byUsername.getName())) {
-           throw new MemberCategoryHandler(ErrorStatus.MEMBER_NOT_FOUND);
+            // username이 일치하지 않음 오류
+           throw new MemberCategoryHandler(ErrorStatus.MEMBER_VALID_USERNAME);
         }
 
         if (!request.getEmail().equals(byUsername.getEmail())) {
-            throw new MemberCategoryHandler(ErrorStatus.MEMBER_NOT_FOUND);
+            // email이 일치하지 않음 오류
+            throw new MemberCategoryHandler(ErrorStatus.MEMBER_VALID_EMAIL);
         }
 
         if (request.getPassword().equals(byUsername.getPassword())) {
-            throw new MemberCategoryHandler(ErrorStatus.MEMBER_NOT_FOUND);
+            // 비밀번호 중복 오류
+            throw new MemberCategoryHandler(ErrorStatus.MEMBER_VALID_PASSWORD);
         }
 
         String newPassword = encodePassword(request.getPassword());

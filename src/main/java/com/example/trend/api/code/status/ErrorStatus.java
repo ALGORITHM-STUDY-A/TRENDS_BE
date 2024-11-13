@@ -22,6 +22,9 @@ public enum ErrorStatus implements BaseErrorCode {
     // 해당 에러코드는 추후 어노테이션으로 수정 할 예정입니다
     MEMBER_NOT_FOUND(HttpStatus.NOT_FOUND, "MEMBER2001", "사용자가 없습니다."),
     MEMBER_USERNAME_DUPLICATE(HttpStatus.MULTI_STATUS,"MEMBER2002","중복된 사용자 username입니다"),
+    MEMBER_VALID_USERNAME(HttpStatus.MULTI_STATUS,"MEMBER2003","username이 유효하지 않습니다."),
+    MEMBER_VALID_EMAIL(HttpStatus.MULTI_STATUS,"MEMBER2004","email이 유효하지 않습니다."),
+    MEMBER_VALID_PASSWORD(HttpStatus.MULTI_STATUS,"MEMBER2005","비밀번호가 변경되지 않았습니다"),
 
     // 기업 관련 에러
     COMPANY_USERNAME_DUPLICATE(HttpStatus.MULTI_STATUS,"COMPANY3001","중복된 기업 username입니다"),
