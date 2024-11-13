@@ -84,12 +84,14 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
 
+/*
     @Override
     public String getPasswords(CompanyProfileFindDTO.CompanyPasswordRequestDTO request){
 
 
 
     }
+*/
 
 
 
