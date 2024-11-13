@@ -36,7 +36,7 @@ public class CompanyServiceImpl implements CompanyService {
 
         Company company=Company.builder()
                 .username(request.getUsername())
-                .password(bCryptPasswordEncoder.encode(request.getPassword()))
+                .password(encodePassword(request.getPassword()))
                 .companyName(request.getCompanyName())
                 .role(Role.ROLE_COM)
                 .status(Status.ACTIVE)
@@ -84,6 +84,13 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
 
+    @Override
+    public String getPasswords(CompanyProfileFindDTO.CompanyPasswordRequestDTO request){
+
+
+
+    }
+
 
 
 
@@ -125,5 +132,10 @@ public class CompanyServiceImpl implements CompanyService {
         if (companyRepository.existsByUsername(username)) {
             throw new CompanyCategoryHandler(ErrorStatus.COMPANY_USERNAME_DUPLICATE);
         }
+    }
+
+
+    public String encodePassword(String password) {
+        return bCryptPasswordEncoder.encode(password);
     }
 }
