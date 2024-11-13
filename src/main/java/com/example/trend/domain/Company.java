@@ -45,6 +45,7 @@ public class Company extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    // 담당자 이름
     @Column(nullable = false)
     private String name;
 
@@ -80,6 +81,11 @@ public class Company extends BaseEntity {
         this.status = Status.INACTIVE;
         this.inactiveDate = LocalDateTime.now();  // 비활성화 날짜 기록
 
+    }
+
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
 }
