@@ -112,14 +112,15 @@ public class MemberServiceImpl implements MemberService {
                 .build();
     }
 
-/*    // 비밀번호 재설정 메서드
+    // 비밀번호 재설정 메서드
     public MemberProfileFindDTO.FindMemberPasswordResponseDTO getPassword(MemberProfileFindDTO.FindMemberPasswordRequestDTO request){
 
         Member byUsername = getMemberByUsername(request.getUsername());
+        byUsername.
 
 
 
-    }*/
+    }
 
 
 
@@ -156,6 +157,11 @@ public class MemberServiceImpl implements MemberService {
     public Member getMemberByUsername(String username){
         return memberRepository.findByUsername(username)
                 .orElseThrow(()-> new MemberCategoryHandler(ErrorStatus.MEMBER_NOT_FOUND));
+    }
+
+
+    public String encodePassword(String password) {
+        return bCryptPasswordEncoder.encode(password);
     }
 
 }
