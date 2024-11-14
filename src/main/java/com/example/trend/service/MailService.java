@@ -3,15 +3,17 @@ package com.example.trend.service;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class MailService {
 
     private final JavaMailSender javaMailSender;
-    private static final String senderEmail= "메일을 보낼 구글 이메일";
+    private static final String senderEmail= "sunrox1107@gmail.com";
     private static int number;
 
     // 랜덤으로 숫자 생성
@@ -19,9 +21,12 @@ public class MailService {
         number = (int)(Math.random() * (90000)) + 100000; //(int) Math.random() * (최댓값-최소값+1) + 최소값
     }
 
+
     public MimeMessage CreateMail(String mail) {
         createNumber();
         MimeMessage message = javaMailSender.createMimeMessage();
+
+        log.info("service에서 받은 메일: {}",mail );
 
         try {
             message.setFrom(senderEmail);
@@ -33,7 +38,7 @@ public class MailService {
             body += "<h3>" + "감사합니다." + "</h3>";
             message.setText(body,"UTF-8", "html");
         } catch (MessagingException e) {
-            e.printStackTrace();
+            log.error("메일 전송 중 오류 발생", e);
         }
 
         return message;
