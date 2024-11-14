@@ -16,6 +16,8 @@ public interface CompanyRepository extends JpaRepository<Company, Long> {
 
     Optional<Company> findByName(String name);
 
+    Optional<Company> findByCompanyName(String companyName);
+
     Boolean existsByUsername(String username);
 
     @Query("SELECT c FROM Company c WHERE c.status = :status AND c.inactiveDate <= :cutoffDate")

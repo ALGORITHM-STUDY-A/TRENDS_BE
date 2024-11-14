@@ -15,6 +15,8 @@ public interface CompanyService {
 
     CompanyProfileFindDTO.CompanyUsernameResponseDTO getUsernames(CompanyProfileFindDTO.CompanyUsernameRequestDTO request);
 
+    CompanyProfileFindDTO.CompanyPasswordResponseDTO getPasswords(CompanyProfileFindDTO.CompanyPasswordRequestDTO request);
+
     // 매일 자정에 실행
     @Scheduled(cron = "0 0 0 * * ?")
     void deleteOldInactiveCompanies();

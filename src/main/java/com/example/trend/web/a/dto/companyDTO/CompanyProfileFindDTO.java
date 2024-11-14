@@ -63,4 +63,15 @@ public class CompanyProfileFindDTO {
 
     }
 
+    @Builder
+    @NoArgsConstructor(access = AccessLevel.PROTECTED)
+    @AllArgsConstructor
+    @Getter
+    public static class CompanyPasswordResponseDTO {
+
+        @Schema(description = "새로운 password 입니다")
+        String password;
+
+    }
+
 }

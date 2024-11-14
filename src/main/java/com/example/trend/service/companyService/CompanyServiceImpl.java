@@ -2,6 +2,7 @@ package com.example.trend.service.companyService;
 
 import com.example.trend.api.code.status.ErrorStatus;
 import com.example.trend.api.exception.handler.CompanyCategoryHandler;
+import com.example.trend.api.exception.handler.MemberCategoryHandler;
 import com.example.trend.domain.Address;
 import com.example.trend.domain.Company;
 import com.example.trend.domain.enumClass.Role;
@@ -38,6 +39,8 @@ public class CompanyServiceImpl implements CompanyService {
                 .username(request.getUsername())
                 .password(encodePassword(request.getPassword()))
                 .companyName(request.getCompanyName())
+                .name(request.getName())
+                .phoneNumber(request.getPhoneNumber())
                 .role(Role.ROLE_COM)
                 .status(Status.ACTIVE)
                 .build();
@@ -84,14 +87,27 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
 
-/*
     @Override
-    public String getPasswords(CompanyProfileFindDTO.CompanyPasswordRequestDTO request){
+    public CompanyProfileFindDTO.CompanyPasswordResponseDTO getPasswords(CompanyProfileFindDTO.CompanyPasswordRequestDTO request){
+
+        Company byCompanyName = companyRepository.findByCompanyName(request.getCompanyName())
+                .orElseThrow(() -> new CompanyCategoryHandler(ErrorStatus.COMPANY_NOT_FOUND));
+
+        if (request.getPassword().equals(byCompanyName.getPassword())) {
+            // 비밀번호 중복 오류
+            throw new CompanyCategoryHandler(ErrorStatus.COMPANY_VALID_PASSWORD);
+        }
 
 
+        String newPassword = encodePassword(request.getPassword());
+
+        byCompanyName.setPassword(newPassword);
+
+        return CompanyProfileFindDTO.CompanyPasswordResponseDTO.builder()
+                .password(byCompanyName.getPassword())
+                .build();
 
     }
-*/
 
 
 
@@ -116,9 +132,6 @@ public class CompanyServiceImpl implements CompanyService {
         companyRepository.deleteAll(inactiveCompaniesForDeletion);
 
     }
-
-
-
 
 
 

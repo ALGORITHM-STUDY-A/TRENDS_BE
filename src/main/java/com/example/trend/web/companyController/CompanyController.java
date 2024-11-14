@@ -73,7 +73,11 @@ public class CompanyController {
     // 기업 비밀번호 찾기 - 회사 이메일, 이름, 회사 이름를 입력 후 인증번호
     @Operation(summary = "기업 비밀번호 찾기 API")
     @GetMapping("/find-passwords")
-    public void getPasswords(CompanyProfileFindDTO.CompanyPasswordRequestDTO request){
+    public ApiResponse<CompanyProfileFindDTO.CompanyPasswordResponseDTO> getPasswords(CompanyProfileFindDTO.CompanyPasswordRequestDTO request){
+
+        CompanyProfileFindDTO.CompanyPasswordResponseDTO result = companyService.getPasswords(request);
+
+        return ApiResponse.onSuccess(result);
 
     }
 }
