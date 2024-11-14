@@ -48,7 +48,7 @@ public class Member extends BaseEntity {
     // 회원 ACTIVE,INACTIVE 상태 추가
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private Status status = Status.ACTIVE;
 
     // 회원 비활성화 상태 날짜를 기록하는 필드
     private LocalDateTime inactiveDate;

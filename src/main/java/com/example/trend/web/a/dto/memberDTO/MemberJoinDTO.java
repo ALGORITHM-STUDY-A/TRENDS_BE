@@ -36,8 +36,6 @@ public class MemberJoinDTO {
         @Schema(description = "회원 닉네임 입니다")
         String nickname;
 
-        Status status= Status.ACTIVE;
-
 
         /* ---------- 주소 ---------- */
         @Schema(description = "시/도 입니다")
