@@ -35,12 +35,11 @@ public class CompanyProfileFindDTO {
     @Getter
     public static class CompanyPasswordRequestDTO {
 
+        @Schema(description = "회사명 입니다")
+        String companyName;
 
         @Schema(description = "담당자 이름 입니다")
         String name;
-
-        @Schema(description = "회사명 입니다")
-        String companyName;
 
         @Schema(description = "회사 이메일 입니다")
         String email;
@@ -62,6 +61,8 @@ public class CompanyProfileFindDTO {
         String username;
 
     }
+
+
 
     @Builder
     @NoArgsConstructor(access = AccessLevel.PROTECTED)

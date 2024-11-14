@@ -70,7 +70,7 @@ public class CompanyController {
     }
 
 
-    // 기업 비밀번호 찾기 - 회사 이메일, 이름, 회사 이름를 입력 후 인증번호
+    // 기업 비밀번호 찾기 - 회사 이메일, 이름, 회사 이름를 입력 후 인증번호 -> 이거 두개로 나누기
     @Operation(summary = "기업 비밀번호 찾기 API")
     @GetMapping("/find-passwords")
     public ApiResponse<CompanyProfileFindDTO.CompanyPasswordResponseDTO> getPasswords(CompanyProfileFindDTO.CompanyPasswordRequestDTO request){
