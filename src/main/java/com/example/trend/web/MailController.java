@@ -1,5 +1,8 @@
 package com.example.trend.web;
 
+import com.example.trend.api.ApiResponse;
+import com.example.trend.api.code.status.ErrorStatus;
+import com.example.trend.api.exception.handler.MemberCategoryHandler;
 import com.example.trend.service.MailService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -24,7 +27,7 @@ public class MailController {
     // 인증 이메일 전송
     @Operation(summary = "인증 이메일 전송 API")
     @PostMapping("/mailSend")
-    public HashMap<String, Object> mailSend(@RequestParam String mail) {
+    public ApiResponse<String> mailSend(@RequestParam String mail) {
         HashMap<String, Object> map = new HashMap<>();
 
         log.info("Controller에서 받은 이메일: {}", mail);
@@ -40,18 +43,25 @@ public class MailController {
             map.put("error", e.getMessage());
         }
 
-        return map;
+        return ApiResponse.onSuccess("메일이 발송되었습니다");
     }
 
 
     // 인증번호 일치여부 확인
     @Operation(summary = "인증번호 일치여부 확인 API")
     @GetMapping("/mailCheck")
-    public ResponseEntity<?> mailCheck(@RequestParam String userNumber) {
+    public ApiResponse<String> mailCheck(@RequestParam String userNumber) {
 
         boolean isMatch = userNumber.equals(String.valueOf(number));
 
-        return ResponseEntity.ok(isMatch);
+        if (!isMatch){
+
+            throw new MemberCategoryHandler(ErrorStatus.COMPANY_NOT_FOUND);
+
+        }
+
+        // isMatch를 문자열로 변환하여 메시지에 포함
+        return ApiResponse.onSuccess("인증이 완료되었습니다");
     }
 
 
