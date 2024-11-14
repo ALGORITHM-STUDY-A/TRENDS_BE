@@ -2,10 +2,12 @@ package com.example.trend.web;
 
 import com.example.trend.api.ApiResponse;
 import com.example.trend.api.code.status.ErrorStatus;
+import com.example.trend.api.exception.handler.EmailCategoryHandler;
 import com.example.trend.api.exception.handler.MemberCategoryHandler;
 import com.example.trend.service.MailService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.constraints.Email;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -27,7 +29,7 @@ public class MailController {
     // 인증 이메일 전송
     @Operation(summary = "인증 이메일 전송 API")
     @PostMapping("/mailSend")
-    public ApiResponse<String> mailSend(@RequestParam String mail) {
+    public ApiResponse<String> mailSend(@RequestParam @Email String mail) {
         HashMap<String, Object> map = new HashMap<>();
 
         log.info("Controller에서 받은 이메일: {}", mail);
@@ -55,9 +57,7 @@ public class MailController {
         boolean isMatch = userNumber.equals(String.valueOf(number));
 
         if (!isMatch){
-
-            throw new MemberCategoryHandler(ErrorStatus.COMPANY_NOT_FOUND);
-
+            throw new EmailCategoryHandler(ErrorStatus.EMAIL_NOT_VALID);
         }
 
         // isMatch를 문자열로 변환하여 메시지에 포함
