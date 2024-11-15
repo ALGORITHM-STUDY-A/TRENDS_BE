@@ -46,9 +46,6 @@ public class PlanController {
     @GetMapping("/Rankings")
     public ApiResponse<List<PlanRankingDTO.PlanRankingResponseDTO>> getPlanRanking(){
 
-
-
-
     }
 
 
