@@ -3,6 +3,7 @@ package com.example.trend.web.a.dto.planDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class PlanBannerDTO {
@@ -28,10 +29,10 @@ public class PlanBannerDTO {
         Integer commentsCount;
 
         @Schema(description = "기획한 축제의 시작일자 입니다")
-        LocalDateTime startDate;
+        LocalDate startDate;
 
         @Schema(description = "기획한 축제의 종료일자 입니다")
-        LocalDateTime endDate;
+        LocalDate endDate;
 
 
     }

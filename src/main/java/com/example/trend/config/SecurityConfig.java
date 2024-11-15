@@ -87,6 +87,7 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests((auth)->auth
                 .requestMatchers("/test").permitAll()
+                .requestMatchers("/plans/**").permitAll()
                 .requestMatchers("members/join","/login","/companies/join").permitAll()
                 .requestMatchers("/mails/**").permitAll()
                 .requestMatchers("/members/find-usernames/emails","/members/find-usernames/phoneNumbers","/companies/find-passwords","/companies/find-usernames").permitAll()

@@ -1,5 +1,7 @@
 package com.example.trend.web.planController;
 
+import com.example.trend.api.ApiResponse;
+import com.example.trend.service.planService.PlanService;
 import com.example.trend.web.a.dto.planDTO.PlanBannerDTO;
 import com.example.trend.web.a.dto.planDTO.PlanSearchDTO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,19 +12,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/plans")
 @RequiredArgsConstructor
 @Tag(name = "기획서 API")
 public class PlanController {
 
+    private final PlanService planService;
 
     // 상단 배너 조회
     // 누적 좋아요수 순으로 4개 조회 - 메인 이미지, title, 기획자 이름, 좋아요 수, 댓글 수, startDate,endDate
     @Operation(summary = "상단 배너 조회 API", description = "해당 API는 게시글을 총 누적 좋아요의 갯수 순으로 조회합니다")
     @GetMapping("/banners")
-    public void getPlanBanners(){
+    public ApiResponse<List<PlanBannerDTO.PlanBannerResponseDTO>> getPlanBanners(){
 
+        List<PlanBannerDTO.PlanBannerResponseDTO> planBanner = planService.getPlanBanner();
+
+        return ApiResponse.onSuccess(planBanner);
 
     }
 

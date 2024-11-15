@@ -58,6 +58,7 @@ public class Plan extends BaseEntity {
     private boolean contacted;
     
     @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Category category;
     
     @ManyToOne(fetch = FetchType.LAZY)
