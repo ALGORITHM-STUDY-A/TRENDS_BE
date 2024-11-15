@@ -9,6 +9,8 @@ import org.hibernate.annotations.Check;
 import org.hibernate.annotations.ColumnDefault;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder
@@ -64,4 +66,7 @@ public class Plan extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    @OneToMany(mappedBy = "plan",cascade = CascadeType.ALL)
+    private List<PlanLikes> planLikes=new ArrayList<>();
 }
