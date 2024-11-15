@@ -1,4 +1,4 @@
-package com.example.trend.web.festivalController;
+package com.example.trend.web.planController;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/festival")
 @RequiredArgsConstructor
-public class FestivalController {
+public class PlanController {
 
 
     // 최고 좋아요 이달의 랭킹
