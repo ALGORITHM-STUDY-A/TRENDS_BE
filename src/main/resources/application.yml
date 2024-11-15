@@ -41,3 +41,16 @@ spring:
 
 springdoc:
   show-login-endpoint: true
+
+cloud:
+  aws:
+    s3:
+      bucket: trends-buckets
+    credentials:
+      accessKey: ${S3_ACCESSKEY}
+      secretKey: ${S3_PASSWORD}
+    region:
+      static: ap-northeast-2
+      auto: false
+    stack:
+      auto: false
