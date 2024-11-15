@@ -88,8 +88,8 @@ public class SecurityConfig {
         http.authorizeHttpRequests((auth)->auth
                 .requestMatchers("/test").permitAll()
                 .requestMatchers("members/join","/login","/companies/join").permitAll()
-                .requestMatchers("/register").permitAll()
-                .requestMatchers("/members/find-usernames/emails","/members/find-usernames/phoneNumbers").permitAll()
+                .requestMatchers("/mails/**").permitAll()
+                .requestMatchers("/members/find-usernames/emails","/members/find-usernames/phoneNumbers","/companies/find-passwords","/companies/find-usernames").permitAll()
                 .requestMatchers("/swagger-ui/**", "/v3/api-docs/**", "/swagger-resources/**", "/webjars/**").permitAll() // Swagger 관련 경로를 허용
                 .requestMatchers("/health").permitAll()
                 .anyRequest().authenticated());

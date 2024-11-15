@@ -29,12 +29,17 @@ public enum ErrorStatus implements BaseErrorCode {
     // 기업 관련 에러
     COMPANY_USERNAME_DUPLICATE(HttpStatus.MULTI_STATUS,"COMPANY3001","중복된 기업 username입니다"),
     COMPANY_NOT_FOUND(HttpStatus.NOT_FOUND, "COMPANY3002", "사용자가 없습니다."),
+    COMPANY_VALID_PASSWORD(HttpStatus.MULTI_STATUS,"COMPANY3003","비밀번호가 변경되지 않았습니다"),
 
 
-    //토큰 관련 에러
+    // 토큰 관련 에러
     TOKEN_NOT_INCORRECT(HttpStatus.NOT_FOUND,"TOKEN4001","토큰을 찾을 수 없습니다"),
     TOKEN_EXPIRED(HttpStatus.NOT_FOUND,"TOKEN4002","토큰이 만료되었습니다"),
-    TOKEN_NULL(HttpStatus.NOT_FOUND,"TOKEN4003","토큰이 만료되었습니다");
+    TOKEN_NULL(HttpStatus.NOT_FOUND,"TOKEN4003","토큰이 만료되었습니다"),
+
+
+    // 이메일 관련 에러
+    EMAIL_NOT_VALID(HttpStatus.FORBIDDEN,"EMAIL5001","인증번호가 일치하지 않습니다");
 
 
 
