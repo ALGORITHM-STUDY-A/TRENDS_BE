@@ -19,7 +19,7 @@ import java.util.HashMap;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/mails")
-@Tag(name = "이메일 인증을 위한 API")
+@Tag(name = "이메일 인증 API")
 public class MailController {
 
     private static final Logger log = LoggerFactory.getLogger(MailController.class);
