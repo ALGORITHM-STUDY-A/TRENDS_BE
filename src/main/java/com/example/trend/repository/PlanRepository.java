@@ -10,4 +10,5 @@ public interface PlanRepository extends JpaRepository<Plan, Long> {
 
     @EntityGraph(attributePaths = {"member"})
     List<Plan> findTop4ByOrderByLikesCountDesc();
+
 }
