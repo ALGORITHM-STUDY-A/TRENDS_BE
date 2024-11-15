@@ -3,6 +3,7 @@ package com.example.trend.web.planController;
 import com.example.trend.api.ApiResponse;
 import com.example.trend.service.planService.PlanService;
 import com.example.trend.web.a.dto.planDTO.PlanBannerDTO;
+import com.example.trend.web.a.dto.planDTO.PlanRankingDTO;
 import com.example.trend.web.a.dto.planDTO.PlanSearchDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -20,7 +21,10 @@ import java.util.List;
 @Tag(name = "기획서 API")
 public class PlanController {
 
+
     private final PlanService planService;
+
+
 
     // 상단 배너 조회
     // 누적 좋아요수 순으로 4개 조회 - 메인 이미지, title, 기획자 이름, 좋아요 수, 댓글 수, startDate,endDate
@@ -40,7 +44,9 @@ public class PlanController {
     // 한달 누적 좋아요 순으로 조회 - 메인 이미지, title, 기획자 이름, 좋아요 수, 댓글 수
     @Operation(summary = "이달의 랭킹 조회 API", description = "해당 API는 게시글을 한달 간의 누적 좋아요의 갯수 순으로 조회합니다" )
     @GetMapping("/Rankings")
-    public void getPlanRanking(){
+    public ApiResponse<List<PlanRankingDTO.PlanRankingResponseDTO>> getPlanRanking(){
+
+
 
 
     }
